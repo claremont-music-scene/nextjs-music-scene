@@ -1,6 +1,8 @@
+import Link from 'next/link'
+
 export default function HeaderSocialLinks() {
     return (
-        <header id="header"><a href="/" className="logo"><strong>Claremont Music Scene</strong></a>
+        <header id="header"><Link href="/" ><a className="logo"><strong>Claremont Music Scene</strong></a></Link>
             <ul className="icons">
                 <li><a href="https://www.instagram.com/claremont.music/"
                        className="icon brands fa-instagram"><span className="label">Instagram</span></a>

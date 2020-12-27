@@ -2,7 +2,7 @@
 /*@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");*/
 @font-face {
   font-family: "Trend Sans One";
-  src: url(/public/webfonts/3938FF_0_0.woff);
+  src: url(/webfonts/3938FF_0_0.woff);
 }
 :root {
   --sitecolor-blue: #1b75bc;

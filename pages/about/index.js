@@ -5,6 +5,7 @@ export default function About() {
     return (
         <SingleColumnLayout>
             <Head><title>About Claremont Music Scene</title></Head>
+
             <section>
                 <header className="main"><h2>About Us</h2></header>
                 <p>Claremont Music Scene was created with a purpose of elevating the music and arts community in

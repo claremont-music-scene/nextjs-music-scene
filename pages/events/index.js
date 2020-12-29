@@ -2,8 +2,15 @@ import Link from 'next/link'
 import HeaderSocialLinks from "../../components/header-social-links";
 import Footer from "../../components/footer";
 import Nav from "../../components/nav";
+import VenueList from "../../components/venues/venue-list";
 
-export default function Events() {
+export async function getStaticProps() {
+    const res = await fetch('http://local.music-scene-data.com:8000/api/venues/')
+    const venues = await res.json()
+    return { props: { venues } }
+}
+
+export default function Events({ venues }) {
     return (
         <div id="wrapper">
             <div id="main">
@@ -51,31 +58,9 @@ export default function Events() {
                         <footer><a href="/events/planning/" className="button icon solid fa-info-circle">Find out
                             more</a></footer>
                     </section>
-                    <section><h3>Venues Directory</h3>
-                        <ul className="style2">
-                            <li><a href="http://claremontmusicscene.com/events/venues/black-watch-pub/">Black Watch
-                                Pub</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/bridges-auditorium/">Bridges
-                                Auditorium</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/bridges-hall-of-music/">Bridges
-                                Hall of Music</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/candlelight-pavillion/">Candlelight
-                                Pavillion</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/dragons-tale-brewery/">Dragon's
-                                Tale Brewery</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/folk-music-center/">Folk Music
-                                Center</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/ironbark-ciderworks/">Ironbark
-                                Ciderworks</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/styles-music/">Styles Music</a>
-                            </li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/the-press/">The Press
-                                Restaurant</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/the-whisper-house/">The Whisper
-                                House</a></li>
-                            <li><a href="http://claremontmusicscene.com/events/venues/walters-restaurant/">Walter's
-                                Restaurant</a></li>
-                        </ul>
+                    <section>
+                        <h3>Venues Directory</h3>
+                        <VenueList venues={venues}/>
                     </section>
                 </div>
             </div>

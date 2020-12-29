@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Nav() {
+
     return (
         <nav id="menu">
             <header className="major"><h2>Menu</h2></header>

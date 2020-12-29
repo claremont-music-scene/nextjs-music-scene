@@ -30,7 +30,7 @@ export default function Community() {
                             More</a></Link></div>
                     </article>
                     <article><span className="icon solid fa-school"></span>
-                        <div className="content"><h3><a href="/community/learning/">Lessons</a></h3>
+                        <div className="content"><h3><Link href="/community/learning/"><a>Lessons</a></Link></h3>
                             <p>Directory to local tutors, teachers, classes</p><a className="button"
                                                                                   href="/community/learning/">Learn
                                 More</a></div>

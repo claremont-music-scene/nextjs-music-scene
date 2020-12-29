@@ -70,7 +70,7 @@ export default function Volunteering() {
                         </div>
                     </article>
                     <article><span className="icon solid fa-people-carry"></span>
-                        <div className="content"><h3><a href="/community/volunteering/sharing/">Sharing</a></h3>
+                        <div className="content"><h3><Link href="/community/volunteering/sharing/"><a>Sharing</a></Link></h3>
                             <p>Financial Generosity and Community Outreach</p><Link className="button"
                                                                                     href="/community/volunteering/sharing/"><a>Learn
                                 More</a></Link></div>

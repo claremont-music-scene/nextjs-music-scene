@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import SingleColumnLayout from "../../../components/layouts/single-column";
+
 
 export default function Volunteering() {
     return (<SingleColumnLayout>
@@ -45,28 +47,32 @@ export default function Volunteering() {
             <section><h3 className="volunteering">Volunteer Project Ideas</h3>
                 <div className="features volunteering">
                     <article><span className="icon fa-newspaper"></span>
-                        <div className="content"><h3><Link href="/community/volunteering/website/"><a>Newsroom</a></Link></h3>
+                        <div className="content"><h3><Link
+                            href="/community/volunteering/website/"><a>Newsroom</a></Link></h3>
                             <p>Help with production and maintenance of the website</p><Link className="button"
-                                                                                         href="/community/volunteering/website/"><a>Learn
+                                                                                            href="/community/volunteering/website/"><a>Learn
                                 More</a></Link></div>
                     </article>
                     <article><span className="icon fa-calendar"></span>
                         <div className="content"><h3><Link
-                            href="/community/volunteering/event-planning-and-hosting/"><a>Events</a></Link></h3><p>Good for
+                            href="/community/volunteering/event-planning-and-hosting/"><a>Events</a></Link></h3><p>Good
+                            for
                             planners and organizers. Also if you have creative space available at your business,
                             venue, or property</p><Link className="button"
-                                                     href="/community/volunteering/event-planning-and-hosting/"><a>Learn
+                                                        href="/community/volunteering/event-planning-and-hosting/"><a>Learn
                             More</a></Link></div>
                     </article>
                     <article><span className="icon solid fa-graduation-cap"></span>
-                        <div className="content"><h3><Link href="/community/volunteering/teaching/"><a>Teaching</a></Link></h3>
+                        <div className="content"><h3><Link
+                            href="/community/volunteering/teaching/"><a>Teaching</a></Link></h3>
                             <p>Create avenues for learning to complement existing community offerings</p><Link
-                                className="button" href="/community/volunteering/teaching/"><a>Learn More</a></Link></div>
+                                className="button" href="/community/volunteering/teaching/"><a>Learn More</a></Link>
+                        </div>
                     </article>
                     <article><span className="icon solid fa-people-carry"></span>
                         <div className="content"><h3><a href="/community/volunteering/sharing/">Sharing</a></h3>
                             <p>Financial Generosity and Community Outreach</p><Link className="button"
-                                                                                 href="/community/volunteering/sharing/"><a>Learn
+                                                                                    href="/community/volunteering/sharing/"><a>Learn
                                 More</a></Link></div>
                     </article>
                 </div>

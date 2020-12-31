@@ -11,7 +11,7 @@ export default function SingleColumnLayout({children}) {
     if (parts.length > 2) {
         crumbs.push(parts[1])
     }
-    
+
     return (
         <div id="wrapper">
             <div id="main">

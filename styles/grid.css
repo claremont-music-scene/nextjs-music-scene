@@ -35,7 +35,7 @@
   .grid-cell {
     margin-bottom: 1em;
   }
-  .grid-cell.feat {
-    order: -2
+  .grid-cell.feat-1 {
+    order: -1
   }
 }

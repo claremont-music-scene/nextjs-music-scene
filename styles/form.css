@@ -1,0 +1,8 @@
+/* 
+@brian: 
+    I'm not sure how you want to handle modular css
+    I'm nervous about modifying your main.css, but will if you'd prefer
+*/
+.field-error {
+    color: red;
+}

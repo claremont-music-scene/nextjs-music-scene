@@ -1,34 +1,30 @@
 import SingleColumnLayout from "../../../components/layouts/single-column";
 import Bulletin from '../../../components/bulletins/bulletin';
-import data from '../../../data/bulletins.json';
 
-const { bulletins } = data;
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 
 export async function getStaticProps({ params }) {
-    const bulletin = bulletins.find(b => b.id.toString() === params.id);
+    const post = await fetcher('https://music-scene-api.herokuapp.com/api/bulletin_board/items/' + params.id);
+    return { props: { post } };
 
-    return {
-        props: {
-            bulletin
-        }
-
-    };
 }
 
 export async function getStaticPaths() {
+    const posts = await fetcher('https://music-scene-api.herokuapp.com/api/bulletin_board/items');
+
     return {
-        paths: bulletins.map(bulletin => ({
+        paths: posts.map((post, idx) => ({
             params: {
-                id: bulletin.id.toString()
+                id: post.id ? post.id.toString() : (idx + 1).toString() // need dynamic id
             }
         })),
         fallback: false
     };
 }
 
-const BulletinPage = ({ bulletin }) => (
+const BulletinPage = ({ post }) => (
     <SingleColumnLayout>
-        <Bulletin bulletin={bulletin} />
+        <Bulletin bulletin={post} />
     </SingleColumnLayout>
 );
 

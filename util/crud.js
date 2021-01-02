@@ -9,18 +9,22 @@ export const poster = async ({ title, content }) => {
             method: 'POST',
             mode: 'no-cors',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
             },
             body: JSON.stringify({
-                "title": title,
-                "content": content,
+                "title": 'asdf',
+                "content": 'qwer',
                 "meta": null
             })
         }
-    ).then(posted => {
-        console.log('posted: ', posted);
+    ).then(response => {
+        if (response.ok) {
+            response.json().then(json => {
+                console.log(json);
+            })
+        }
     }).catch(err => {
-        console.log('error during fetch:', err);
+        console.log('error during post:', err);
     });
 }

@@ -20,7 +20,7 @@ const NewBulletin = () => {
                 </div>
                 <div>
                     <label htmlFor='content'>Content</label>
-                    <input name='content' id='content' ref={register({ required: true })} />
+                    <textarea name='content' id='content' ref={register({ required: true })} />
                     <div className="field-error">{errors.content && 'Please enter some content for your post.'}</div>
                 </div>
                 <input type='submit' />

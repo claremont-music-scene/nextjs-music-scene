@@ -1,11 +1,13 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
+import { poster } from '../../../util/crud';
 
 import { useForm } from 'react-hook-form';
 
 const NewBulletin = () => {
     const { register, handleSubmit, errors } = useForm(),
         onSubmit = (data) => {
-            console.log(data);
+            console.log('attempting to submit data:', data);
+            poster(data);
         };
 
     return (

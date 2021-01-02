@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
 export default function BulletinCard({ bulletin }) {
-    const bulletinClass = 'grid-cell'/*  + (bulletin.isFeature ? ' feat-' + bulletin.isFeature : '') */;
+    const bulletinClass = 'grid-cell'/*  + (bulletin.isFeature ? ' feat-' + bulletin.isFeature : '') */,
+        content = bulletin.content.replace(/\n/g, '<br/>');
 
     return (
         <div key={bulletin.id} className={bulletinClass}>
@@ -12,7 +13,7 @@ export default function BulletinCard({ bulletin }) {
                         <a>{bulletin.title}</a>
                     </Link>
                 </div>
-                <div>{bulletin.content}</div>
+                <div dangerouslySetInnerHTML={{ __html: content }} />
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import SingleColumnLayout from "../../../components/layouts/single-column";
+import SingleColumnLayout from '../../../components/layouts/single-column';
 import Bulletin from '../../../components/bulletins/bulletin';
 import { fetcher } from '../../../util/crud';
 
@@ -11,9 +11,9 @@ export async function getStaticPaths() {
     const posts = await fetcher('https://music-scene-api.herokuapp.com/api/bulletin_board/items');
 
     return {
-        paths: posts.map((post, idx) => ({
+        paths: posts.map(post => ({
             params: {
-                id: post.id ? post.id.toString() : (idx + 1).toString() // need dynamic id
+                id: post.id.toString()
             }
         })),
         fallback: false

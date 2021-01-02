@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-export default function BulletinCard({ bulletin, idx }) {
+export default function BulletinCard({ bulletin }) {
     const bulletinClass = 'grid-cell'/*  + (bulletin.isFeature ? ' feat-' + bulletin.isFeature : '') */,
-        bulletinId = bulletin.id || idx + 1; // need dynamic id
+        bulletinId = bulletin.id;
 
     return (
         <div key={bulletinId} className={bulletinClass}>

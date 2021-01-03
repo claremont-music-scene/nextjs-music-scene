@@ -2,13 +2,13 @@ import SingleColumnLayout from "../../../components/layouts/single-column";
 import EventList from '../../../components/events/event-list';
 import { fetcher } from '../../../util/crud';
 import useSWR from 'swr';
-
-import data from '../../../tempdata/events.json';
+import data from '../../../tempdata/events.json'; // temporary data
+import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+dayjs.extend(isSameOrAfter);
 
 const { events } = data,
-    today = (new Date()).valueOf(),
-    currentEvents = events.filter(e => new Date(e.start_date).valueOf() >= today)
-        .sort((a, b) => new Date(a.start_date).valueOf() - new Date(b.start_date).valueOf());
+    currentEvents = events.filter(e => dayjs(e.start_date).isSameOrAfter(dayjs())).sort((a, b) => dayjs(a.start_date) - dayjs(b.start_date));
 
 export async function getStaticProps() {
     // const events = await fetcher('https://music-scene-api.herokuapp.com/api/events/items/');
@@ -16,7 +16,6 @@ export async function getStaticProps() {
 }
 
 export default function EventDisplay({ currentEvents }) {
-    console.log('🚀 ~ EventDisplay ~ currentEvents', currentEvents);
     // const { data, error } = useSWR('https://music-scene-api.herokuapp.com/api/events/items/', fetcher, { initialData: props.events });
 
     // if (error) return <div>failed to load</div>

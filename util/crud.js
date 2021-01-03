@@ -1,6 +1,6 @@
 import Router from 'next/router';
 
-export const fetcher = async (...args) => fetch(...args).then(res => res.json());
+export const fetcher = async (...args) => fetch(...args, { mode: 'no-cors' }).then(res => res.json()); // temp fix, will cause merge conflict
 
 export const poster = async ({ title, content }) => {
     try {

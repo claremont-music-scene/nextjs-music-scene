@@ -1,7 +1,7 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
 import { poster } from '../../../util/crud';
-
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 
 const NewBulletin = () => {
     const { register, handleSubmit, errors } = useForm(),
@@ -24,6 +24,9 @@ const NewBulletin = () => {
                     <div className="field-error">{errors.content && 'Please enter some content for your post.'}</div>
                 </div>
                 <input type='submit' />
+                <Link href='/community/bulletins/'>
+                    <a>Back to bulletins</a>
+                </Link>
             </form>
         </SingleColumnLayout>
     );

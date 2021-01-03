@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 dayjs.extend(isSameOrAfter);
 
-const { events } = data,
+const { events } = data, // temporary data
     currentEvents = events.filter(e => dayjs(e.start_date).isSameOrAfter(dayjs())).sort((a, b) => dayjs(a.start_date) - dayjs(b.start_date));
 
 export async function getStaticProps() {

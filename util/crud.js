@@ -1,6 +1,14 @@
 import Router from 'next/router';
 
-export const fetcher = async (...args) => fetch(...args, { mode: 'no-cors' }).then(res => res.json()); // temp fix, will cause merge conflict
+export const fetcher = async (...args) => {
+    try {
+        const res = await fetch(...args, { mode: 'no-cors' });
+        return res.json();
+    }
+    catch (err) {
+        console.error(err);
+    }
+};
 
 export const poster = async ({ title, content }) => {
     try {
@@ -15,7 +23,7 @@ export const poster = async ({ title, content }) => {
         });
         await Router.push('/community/bulletins/');
     }
-    catch (error) {
-        console.error(error);
+    catch (err) {
+        console.error(err);
     }
 }

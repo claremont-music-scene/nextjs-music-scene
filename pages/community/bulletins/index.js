@@ -10,9 +10,12 @@ export async function getStaticProps() {
 }
 
 export default function Bulletins(props) {
-    const { data, error } = useSWR('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', fetcher, { initialData: props.posts });
+    const { data, err } = useSWR('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', fetcher, { initialData: props.posts });
 
-    if (error) return <div>failed to load</div>
+    if (err) {
+        console.log('Error fetching: ', err);
+        return <div>failed to load</div>;
+    }
     if (!data) return <div>loading...</div>
 
     return (

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export default function BulletinCard({ bulletin }) {
-    const bulletinClass = 'grid-cell'/*  + (bulletin.isFeature ? ' feat-' + bulletin.isFeature : '') */,
+    const bulletinClass = 'grid-cell' + (bulletin.is_featured ? ' feat-' + bulletin.featured_order : ''),
         content = bulletin.content.replace(/\n/g, '<br/>');
 
     return (

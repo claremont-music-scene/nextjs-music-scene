@@ -8,12 +8,12 @@ export default function Event({ e }) {
         <div>
             <h1>{e.event_name}</h1>
             <h2>When</h2>
-            <div className='event-detail-group'>
+            <div className='content-group'>
                 {e.start_date}
                 {e.end_date && ' to ' + e.end_date}
             </div>
             <h2>Where</h2>
-            <div className='event-detail-group'>
+            <div className='content-group'>
                 {e.street && <div>{e.street}</div>}
                 <div>
                     {e.city && e.city}
@@ -28,13 +28,13 @@ export default function Event({ e }) {
             </div>
             {description && <>
                 <h2>Description</h2>
-                <div className='event-detail-group'
+                <div className='content-group'
                     dangerouslySetInnerHTML={{ __html: description }}
                 />
             </>}
             {contact && <>
                 <h2>Contact</h2>
-                <div className='event-detail-group'
+                <div className='content-group'
                     dangerouslySetInnerHTML={{ __html: contact }}
                 />
             </>}

@@ -6,7 +6,7 @@ export default function BulletinCard({ bulletin }) {
 
     return (
         <div key={bulletin.id} className={bulletinClass}>
-            {/* <div><img src={bulletin.thumbUrl} /></div> */}
+            <div><img src={bulletin.image} /></div>
             <div>
                 <div>
                     <Link href={'/community/bulletins/' + bulletin.id}>

@@ -10,7 +10,7 @@ export default function BulletinCard({ bulletin }) {
             <div>
                 <div>
                     <Link href={'/community/bulletins/' + bulletin.id}>
-                        <a>{bulletin.title}</a>
+                        <a className={'title'}>{bulletin.title}</a>
                     </Link>
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: content }} />

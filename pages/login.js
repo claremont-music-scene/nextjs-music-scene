@@ -1,31 +1,26 @@
 import SingleColumnLayout from "../components/layouts/single-column";
 import {useForm} from "react-hook-form";
-import {poster} from "../util/crud";
+import {fetcher, poster} from "../util/crud";
 import Router from "next/router";
+
+
 
 export default function Login() {
 
     const { register, handleSubmit, errors } = useForm(),
-        onSubmit = async (data) => {
+        onSubmit = (data) => {
             console.log('attempting to submit data:', data);
             const fd = new FormData();
             fd.append('username', username);
+            // TODO password field
             fd.append('password', password);
 
-            // TODO password field
-            // TODO CSRF token
-            try {
-                await fetch(`http://local.music-scene-data.com:8000/login/`, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: fd
-                });
-                await Router.push(redirectPath);
-            }
-            catch (err) {
-                console.error(err);
-            }
-            //poster({formData: fd, endpoint: '/bulletin_board/items/'});
+
+            //fetcher('http://local.music-scene-data.com:8000/api/set-csrf/')
+            //const csrftoken = getCookie('csrftoken');
+            //fd.append('csrf_token', csrftoken)
+
+            poster({formData: fd, endpoint: '/login/', redirectPath: '/community/bulletins'});
         };
 
     return (<SingleColumnLayout>

@@ -7,7 +7,10 @@ const NewBulletin = () => {
     const { register, handleSubmit, errors } = useForm(),
         onSubmit = (data) => {
             console.log('attempting to submit data:', data);
-            poster(data);
+            const fd = new FormData();
+            fd.append('title', title);
+            fd.append('content', content);
+            poster({formData: fd, endpoint: '/bulletin_board/items/', redirectPath: '/community/bulletins'});
         };
 
     return (

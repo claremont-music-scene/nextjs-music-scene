@@ -10,18 +10,14 @@ export const fetcher = async (...args) => {
     }
 };
 
-export const poster = async ({ title, content }) => {
+export const poster = async ({ formData, endpoint, redirectPath }) => {
     try {
-        const fd = new FormData();
-        fd.append('title', title);
-        fd.append('content', content);
-
-        await fetch('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', {
+        await fetch(`http://local.music-scene-data.com:8000/api${endpoint}`, {
             method: 'POST',
             mode: 'no-cors',
             body: fd
         });
-        await Router.push('/community/bulletins/');
+        await Router.push(redirectPath);
     }
     catch (err) {
         console.error(err);

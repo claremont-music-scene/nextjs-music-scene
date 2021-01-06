@@ -10,7 +10,7 @@ export const fetcher = async (...args) => {
     }
 };
 
-export const poster = async data => {
+export const poster = async (data, listName, redir) => {
     const tempMetaFields = [
         'email',
     ];
@@ -30,13 +30,13 @@ export const poster = async data => {
 
         fd.append('meta', JSON.stringify(meta));
 
-        await fetch('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', {
+        await fetch(`https://music-scene-api.herokuapp.com/api/${listName}/items/`, {
             method: 'POST',
             mode: 'no-cors',
             body: fd
         });
 
-        await Router.push('/community/bulletins/');
+        await Router.push(redir);
     }
     catch (err) {
         console.error(err);

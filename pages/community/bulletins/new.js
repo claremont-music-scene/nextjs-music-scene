@@ -11,7 +11,7 @@ const NewBulletin = () => {
 
         onSubmit = (data) => {
             console.log('attempting to submit data:', data);
-            poster(data);
+            poster(data, 'bulletin_board', '/community/bulletins/');
         };
 
     const tempUserId = 0;
@@ -35,16 +35,16 @@ const NewBulletin = () => {
                         isRequired={true}
                         inputType='text'
                     />
-                    
+
                     <FieldGroup
                         fieldId='content'
                         displayName='Content'
                         isRequired={true}
                         inputType='textarea'
                     />
-                    
+
                     <input type='submit' />
-                    
+
                     <Link href='/community/bulletins/'>
                         <a>Back to bulletins</a>
                     </Link>

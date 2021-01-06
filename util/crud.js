@@ -10,17 +10,19 @@ export const fetcher = async (...args) => {
     }
 };
 
-export const poster = async ({ title, content }) => {
+export const poster = async data => {
     try {
         const fd = new FormData();
-        fd.append('title', title);
-        fd.append('content', content);
+        for (let d in data) {
+            fd.append(d, data[d]);
+        }
 
         await fetch('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', {
             method: 'POST',
             mode: 'no-cors',
             body: fd
         });
+
         await Router.push('/community/bulletins/');
     }
     catch (err) {

@@ -1,28 +1,36 @@
-// import Link from 'next/link';
 import Router from 'next/router';
 
 
 export default function BulletinCard({ bulletin }) {
-    const bulletinClass = 'grid-cell clickable' + (bulletin.is_featured ? ' feat-' + bulletin.featured_order : ''),
-        content = bulletin.content.replace(/\n/g, '<br/>'),
-        { meta } = bulletin,
-        layout = meta && meta.image_only ? 'FullSizeImage(nobackgroundortext)' : meta && meta.layout || 'NoImage',
-        bulletinUrl = '/community/bulletins/' + bulletin.id,
+    const { meta, id, is_featured, featured_order, title, content, image } = bulletin,
+        bulletinClass = 'grid-cell clickable' + (is_featured ? ' feat-' + featured_order : ''),
+        layout = meta && meta.image_only ? 'FullSizeImage(nobackgroundortext)' : meta && meta.layout || 'NoImage', // temporarily complex
 
         onClickCard = () => {
-            Router.push(bulletinUrl);
+            Router.push('/community/bulletins/' + id);
         },
 
-        contentSection =
-            <div>
-                <div className={'title'}>{bulletin.title}</div>
-                <div dangerouslySetInnerHTML={{ __html: content }} />
-            </div>;
+        imageSection = <div><img src={image} /></div>,
+
+        titleSection = <div className={'title'}>{title}</div>,
+
+        contentSection = <div dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br/>') }} />;
+
+    let layoutHtml = <></>;
+
+    console.log('🚀 ~ BulletinCard ~ layout', layout);
+
+    switch (layout) {
+        case 'FullSizeImage(nobackgroundortext)':
+            layoutHtml = imageSection;
+            break;
+        default:
+            layoutHtml = <>{imageSection} {titleSection} {contentSection}</>;
+    }
 
     return (
-        <div key={bulletin.id} className={bulletinClass} onClick={onClickCard}>
-            <div><img src={bulletin.image} /></div>
-            {layout !== 'FullSizeImage(nobackgroundortext)' && contentSection}
+        <div key={id} className={bulletinClass} onClick={onClickCard}>
+            {layoutHtml}
         </div>
     );
 }

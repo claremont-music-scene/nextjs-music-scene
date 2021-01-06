@@ -1,13 +1,11 @@
 import { Controller, useFormContext } from "react-hook-form";
 import * as errorMsgs from '../../static/error-msgs';
 
-export default function FieldGroup({ fieldId, displayName, description, required, inputType }) {
+export default function FieldGroup({ fieldId, displayName, description, isRequired, inputType }) {
     const methods = useFormContext(),
         { control, errors } = methods,
-        fieldRules = { required: required };
+        fieldRules = { required: isRequired };
     let elInput = <></>;
-
-    // fieldRules.required = required;
 
     switch (inputType) {
         case 'text':

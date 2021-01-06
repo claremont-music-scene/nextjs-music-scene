@@ -11,7 +11,7 @@ const NewBulletin = () => {
 
         onSubmit = (data) => {
             console.log('attempting to submit data:', data);
-            // poster(data);
+            poster(data);
         };
 
     const tempUserId = 0;
@@ -25,21 +25,21 @@ const NewBulletin = () => {
                         fieldId='email'
                         displayName='Your Email Address'
                         description='Email address is required for anonymous posts'
-                        required={true}
+                        isRequired={true}
                         inputType='email'
                     />}
 
                     <FieldGroup
                         fieldId='title'
                         displayName='Title'
-                        required={true}
+                        isRequired={true}
                         inputType='text'
                     />
                     
                     <FieldGroup
                         fieldId='content'
                         displayName='Content'
-                        required={true}
+                        isRequired={true}
                         inputType='textarea'
                     />
                     
@@ -48,7 +48,7 @@ const NewBulletin = () => {
                     <Link href='/community/bulletins/'>
                         <a>Back to bulletins</a>
                     </Link>
-                    
+
                 </form>
             </FormProvider>
         </SingleColumnLayout>

@@ -11,11 +11,24 @@ export const fetcher = async (...args) => {
 };
 
 export const poster = async data => {
+    const tempMetaFields = [
+        'email',
+    ];
+
     try {
-        const fd = new FormData();
+        const fd = new FormData(),
+            meta = {};
+
         for (let d in data) {
-            fd.append(d, data[d]);
+            if (tempMetaFields.indexOf(d) === -1) {
+                fd.append(d, data[d]);
+            }
+            else {
+                meta[d] = data[d];
+            }
         }
+
+        fd.append('meta', JSON.stringify(meta));
 
         await fetch('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', {
             method: 'POST',

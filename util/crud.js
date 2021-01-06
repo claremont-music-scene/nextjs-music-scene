@@ -13,6 +13,7 @@ export const fetcher = async (...args) => {
 export const poster = async (data, listName, redir) => {
     const tempMetaFields = [
         'email',
+        'layout',
     ];
 
     try {

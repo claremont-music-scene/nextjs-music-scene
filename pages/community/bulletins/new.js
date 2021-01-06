@@ -30,6 +30,20 @@ const NewBulletin = () => {
                     />}
 
                     <FieldGroup
+                        fieldId='layout'
+                        displayName='Layout'
+                        isRequired={true}
+                        inputType='select'
+                        options={[
+                            'No Image',
+                            'Full-Size Image (no background or text)',
+                            'Full-Size Image with Title as caption',
+                            'Split Vertical Image and Text',
+                            'Small Square Thumbnail in Corner',
+                        ]}
+                    />
+
+                    <FieldGroup
                         fieldId='title'
                         displayName='Title'
                         isRequired={true}

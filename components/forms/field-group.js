@@ -2,7 +2,14 @@ import { Controller, useFormContext } from "react-hook-form";
 import { patterns } from '../../static/validation-rules';
 import FieldError from './field-error';
 
-export default function FieldGroup({ fieldId, displayName, description, isRequired, inputType }) {
+export default function FieldGroup({
+    fieldId,
+    displayName,
+    description,
+    isRequired,
+    inputType,
+    options = null
+}) {
     const methods = useFormContext(),
         { control, errors } = methods,
         fieldRules = { required: isRequired };
@@ -10,16 +17,9 @@ export default function FieldGroup({ fieldId, displayName, description, isRequir
 
     switch (inputType) {
         case 'text':
-            elInput = (ref, onChange) => <input
-                name={fieldId}
-                id={fieldId}
-                ref={ref}
-                onChange={onChange}
-                type='text'
-            />;
-            break;
-
         case 'email':
+        case 'phone':
+        case 'zip':
             elInput = (ref, onChange) => <input
                 name={fieldId}
                 id={fieldId}
@@ -27,7 +27,15 @@ export default function FieldGroup({ fieldId, displayName, description, isRequir
                 onChange={onChange}
                 type='text'
             />;
-            fieldRules.pattern = patterns.email;
+            if (inputType === 'email') {
+                fieldRules.pattern = patterns.email;
+            }
+            else if (inputType === 'phone') {
+                fieldRules.pattern = patterns.phone;
+            }
+            else if (inputType === 'zip') {
+                fieldRules.pattern = patterns.zip;
+            }
             break;
 
         case 'textarea':
@@ -37,6 +45,46 @@ export default function FieldGroup({ fieldId, displayName, description, isRequir
                 ref={ref}
                 onChange={onChange}
             />;
+            break;
+
+        case 'select':
+            elInput = (ref, onChange) => <select
+                name={fieldId}
+                id={fieldId}
+                ref={ref}
+                onChange={onChange}
+            >
+                {options.map(o =>
+                    <option
+                        key={o.replace(/ /g, '')}
+                        value={o}
+                    >
+                        {o}
+                    </option>
+                )}
+            </select>;
+            break;
+
+        case 'radio':
+            elInput = (ref, onChange) => <>
+                {options.map(o => {
+                    const oKey = o.replace(/ /g, '');
+                    return (
+                        <div key={oKey}>
+                            <input
+                                type='radio'
+                                ref={ref}
+                                id={oKey}
+                                value={o}
+                                name={fieldId}
+                                // checked 
+                                onChange={onChange}
+                            />
+                            <label htmlFor={oKey}>{o}</label>
+                        </div>
+                    )
+                })}
+            </>;
             break;
 
         default:

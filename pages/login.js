@@ -1,26 +1,60 @@
 import SingleColumnLayout from "../components/layouts/single-column";
 import {useForm} from "react-hook-form";
 import {fetcher, poster} from "../util/crud";
-import Router from "next/router";
+import Router from 'next/router';
 
 
+
+export async function getServerSideProps(context) {
+    // if request is post, post to API
+    console.log(context.req.method)
+
+    const req = context.req
+    if (req.method == "POST") {
+        let body = ''
+        req.on('data', (chunk) => {
+            body += chunk
+        })
+        req.on('end', () => {
+            console.log(body);
+            let bp = JSON.parse(body)
+            fetch('http://local.music-scene-data.com:8000/api/auth/token/login/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username: bp.username, password: bp.password})
+
+            }).then((res) => {
+                console.log("API Login status", res.status)
+                console.log("returning redirect")
+                return {
+                    redirect: {
+                        destination: '/community/bulletins',
+                        permanent: false
+                    }
+                }
+            })
+        });
+
+    }
+    console.log('returning')
+    return {props: {}}
+
+}
 
 export default function Login() {
 
     const { register, handleSubmit, errors } = useForm(),
         onSubmit = (data) => {
             console.log('attempting to submit data:', data);
-            const fd = new FormData();
-            fd.append('username', username);
-            // TODO password field
-            fd.append('password', password);
+            fetch('/login', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }})
 
-
-            //fetcher('http://local.music-scene-data.com:8000/api/set-csrf/')
-            //const csrftoken = getCookie('csrftoken');
-            //fd.append('csrf_token', csrftoken)
-
-            poster({formData: fd, endpoint: '/login/', redirectPath: '/community/bulletins'});
+            //post to /login
+            //poster({formData: fd, endpoint: '/login/', redirectPath: '/community/bulletins'});
         };
 
     return (<SingleColumnLayout>

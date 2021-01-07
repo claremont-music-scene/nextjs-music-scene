@@ -1,8 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { patterns } from '../../static/validation-rules';
 import FieldError from './field-error';
-// import Wysiwyg from './fields/wysiwyg';
-
 import dynamic from 'next/dynamic';
 
 const Wysiwyg = dynamic(

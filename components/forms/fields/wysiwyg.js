@@ -1,18 +1,16 @@
 import ReactQuill from 'react-quill';
 
 export default function Wysiwyg({ ref, onChange }) {
-    const colors = [/* '#F00', '#0F0', '#00F', '#000', '#FFF' */], // can customize colors for foreground ...
-        bgColors = [/* '#F00', '#0F0', '#00F', '#000', '#FFF' */], // ... and background
-        //... can even do premium colors based on anon, user type, featured post...
+    const colors = ['#1b75bc','#00aeef','#2b3990','#262262','#131131','#39b54a','#8dc63f','#dfd723','#fff200','#be1e2d','#ed1c24','#f5f6f7','#dde1e2'],
 
-        modules = { // 'premium features' can be dynamic based on anon, user type, featured post... 
+        modules = { 
             toolbar: [
-                [{ 'header': [1, 2, 3, false] }], // up to H6
+                [{ 'header': [1, 2, 3, false] }],
                 ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                [{ 'color': colors }, { 'background': [] }],
+                [{ 'color': colors }, { 'background': colors }],
                 [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-                ['link'/* , 'image' */], // can handle inline images--should be able to upload to s3
-                ['clean'] // remove formatting from selected text
+                ['link'/* , 'image' */],
+                ['clean']
             ],
         },
 

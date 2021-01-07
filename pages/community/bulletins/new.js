@@ -54,7 +54,7 @@ const NewBulletin = () => {
                         fieldId='content'
                         displayName='Content'
                         isRequired={true}
-                        inputType='textarea'
+                        inputType='html'
                     />
 
                     <input type='submit' />

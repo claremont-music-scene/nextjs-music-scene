@@ -1,10 +1,6 @@
 import SingleColumnLayout from "../components/layouts/single-column";
 import {useForm} from "react-hook-form";
-import {authPoster, fetcher, poster, serverSidePoster} from "../util/crud";
-import Router from 'next/router';
-import getRawBody from 'raw-body';
 import { useRouter } from 'next/router';
-
 
 
 export default function Login() {
@@ -12,7 +8,7 @@ export default function Login() {
 
     const { register, handleSubmit, errors } = useForm(),
         onSubmit = async (data) => {
-            console.log('attempting to submit data:', data);
+            // TODO get site host from config
             let url = new URL('http://localhost:3000/api/login')
             Object.keys(data).forEach(key => url.searchParams.append(key, data[key]))
             fetch(url, {
@@ -21,14 +17,9 @@ export default function Login() {
                     'Content-Type': 'application/json'
                 }
             }).then((res) => {
-                if (res.ok) {
-                    res.json().then((data) => {
-                        console.log('response data ', data)
-                    })
-                }
+                console.log('redirecting to bulletins')
+                router.push('/community/bulletins')
             })
-
-
         };
 
     return (<SingleColumnLayout>

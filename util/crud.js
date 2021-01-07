@@ -52,17 +52,22 @@ export const serverSidePoster = async (data, listName) => {
     })
 }
 
-export const authPoster = async (data) => {
-    console.log('authPoster', data)
-    const res = await fetch(`https://music-scene-api.herokuapp.com/api/auth/token/login/`, {
+export const authPoster = (data) => {
+
+    console.log('starting authposter', data)
+    return fetch(`https://music-scene-api.herokuapp.com/api/auth/token/login/`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
-    })
-    console.log('result from BE API', res.status)
-    if (res.status == 200) {
+    }).then((res) => {
+        //TODO handle fail
+        console.log('got auth resp')
         return res.json()
-    }
-    return {}
+    }).then((_d) => {
+        console.log('returning auth resp data', _d)
+        return _d
+    })
 
+    console.log('end authposter', authdata)
+    return authdata
 }

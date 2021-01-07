@@ -44,3 +44,25 @@ export const poster = async (data, listName, redir) => {
         console.error(err);
     }
 }
+
+export const serverSidePoster = async (data, listName) => {
+    const res = await fetch(`https://music-scene-api.herokuapp.com/api/v1/${listName}/items/`, {
+        method: 'POST',
+        body: data
+    })
+}
+
+export const authPoster = async (data) => {
+    console.log('authPoster', data)
+    const res = await fetch(`https://music-scene-api.herokuapp.com/api/auth/token/login/`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    })
+    console.log('result from BE API', res.status)
+    if (res.status == 200) {
+        return res.json()
+    }
+    return {}
+
+}

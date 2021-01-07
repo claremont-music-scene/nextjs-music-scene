@@ -1,60 +1,34 @@
 import SingleColumnLayout from "../components/layouts/single-column";
 import {useForm} from "react-hook-form";
-import {fetcher, poster} from "../util/crud";
+import {authPoster, fetcher, poster, serverSidePoster} from "../util/crud";
 import Router from 'next/router';
+import getRawBody from 'raw-body';
+import { useRouter } from 'next/router';
 
 
-
-export async function getServerSideProps(context) {
-    // if request is post, post to API
-    console.log(context.req.method)
-
-    const req = context.req
-    if (req.method == "POST") {
-        let body = ''
-        req.on('data', (chunk) => {
-            body += chunk
-        })
-        req.on('end', () => {
-            console.log(body);
-            let bp = JSON.parse(body)
-            fetch('http://local.music-scene-data.com:8000/api/auth/token/login/', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({username: bp.username, password: bp.password})
-
-            }).then((res) => {
-                console.log("API Login status", res.status)
-                console.log("returning redirect")
-                return {
-                    redirect: {
-                        destination: '/community/bulletins',
-                        permanent: false
-                    }
-                }
-            })
-        });
-
-    }
-    console.log('returning')
-    return {props: {}}
-
-}
 
 export default function Login() {
+    const router = useRouter();
 
     const { register, handleSubmit, errors } = useForm(),
-        onSubmit = (data) => {
+        onSubmit = async (data) => {
             console.log('attempting to submit data:', data);
-            fetch('/login', {
-                method: 'POST',
-                body: JSON.stringify(data),
+            let url = new URL('http://localhost:3000/api/login')
+            Object.keys(data).forEach(key => url.searchParams.append(key, data[key]))
+            fetch(url, {
+                params: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
-                }})
+                }
+            }).then((res) => {
+                if (res.ok) {
+                    res.json().then((data) => {
+                        console.log('response data ', data)
+                    })
+                }
+            })
 
-            //post to /login
-            //poster({formData: fd, endpoint: '/login/', redirectPath: '/community/bulletins'});
+
         };
 
     return (<SingleColumnLayout>

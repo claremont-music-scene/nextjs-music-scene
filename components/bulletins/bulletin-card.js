@@ -4,7 +4,7 @@ export default function BulletinCard({ bulletin }) {
     const { meta, id, is_featured, featured_order, title, content, image } = bulletin,
         metadata = meta ? id >= 18 ? JSON.parse(meta) : meta : null, // temporarily complex
         bulletinClass = 'grid-cell clickable' + (is_featured ? ' feat-' + featured_order : ''),
-        layout = metadata && metadata.image_only ? 'FullSizeImage(nobackgroundortext)' : metadata && metadata.layout || 'NoImage', // temporarily complex
+        layout = metadata && metadata.image_only ? 'Full-SizeImage(nobackgroundortext)' : metadata && metadata.layout || 'NoImage', // temporarily complex
 
         onClickCard = () => {
             Router.push('/community/bulletins/' + id);
@@ -19,19 +19,31 @@ export default function BulletinCard({ bulletin }) {
     let layoutHtml = <></>;
 
     switch (layout) {
-        case 'FullSizeImage(nobackgroundortext)':
+        case 'Full-SizeImage(nobackgroundortext)':
             layoutHtml = imageSection;
             break;
 
         case 'Full-SizeImagewithTitleascaption':
             layoutHtml =
                 <div className='overlay-wrap'>
-                    <div className='overlay-img'>
-                        {imageSection}
-                    </div>
-                    <div className='overlay-text'>
-                        {titleSection}
-                    </div>
+                    <div className='overlay-img'>{imageSection}</div>
+                    <div className='overlay-text'>{titleSection}</div>
+                </div>;
+            break;
+
+        case 'SplitVerticalImageandText':
+            layoutHtml =
+                <div className='split-wrap vertical'>
+                    <div>{imageSection}</div>
+                    <div>{titleSection} {contentSection}</div>
+                </div>;
+            break;
+
+        case 'SmallSquareThumbnailinCorner':
+            layoutHtml =
+                <div className='thumb-in-corner'>
+                    <div className='img-wrap'>{imageSection}</div>
+                    <div>{titleSection} {contentSection}</div>
                 </div>;
             break;
 

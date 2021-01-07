@@ -1,3 +1,9 @@
+.field-group {
+    margin: 30px 0;
+}
+.field-description {
+    font-style: oblique;
+}
 .field-error {
     color: red;
 }

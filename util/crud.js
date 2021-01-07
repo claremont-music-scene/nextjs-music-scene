@@ -11,18 +11,34 @@ export const fetcher = async (...args) => {
 };
 
 
-export const poster = async ({ formData, endpoint, redirectPath }) => {
-    try {
+export const poster = async (data, listName, redir) => {
+    const tempMetaFields = [
+        'email',
+        'layout',
+    ];
 
-        fetch(`http://dev.claremontmusicscene.com:8000/api${endpoint}`, {
+    try {
+        const fd = new FormData(),
+            meta = {};
+
+        for (let d in data) {
+            if (tempMetaFields.indexOf(d) === -1) {
+                fd.append(d, data[d]);
+            }
+            else {
+                meta[d] = data[d];
+            }
+        }
+
+        fd.append('meta', JSON.stringify(meta));
+
+        await fetch(`https://music-scene-api.herokuapp.com/api/${listName}/items/`, {
             method: 'POST',
             mode: 'no-cors',
-            credentials: 'include',
-            headers: {'X-CSRFToken': csrfToken},
-            body: formData
-        })
+            body: fd
+        });
 
-
+        await Router.push(redir);
     }
     catch (err) {
         console.error(err);

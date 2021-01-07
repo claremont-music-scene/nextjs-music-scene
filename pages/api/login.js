@@ -3,10 +3,7 @@ import { serialize } from 'cookie';
 
 export default async function handler(req, res) {
     res.setHeader('Content-Type', 'application/json')
-
     const loginResult = await authPoster(req.query)
-    console.log(loginResult)
-    
     if (loginResult['auth_token']) {
         res.setHeader('Set-Cookie', serialize('token', loginResult['auth_token'], {
             //one week
@@ -20,6 +17,4 @@ export default async function handler(req, res) {
         res.statusCode = 400
         res.end(JSON.stringify({'error': 'login failed'}))
     }
-
-
 }

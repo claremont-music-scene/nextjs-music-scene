@@ -53,8 +53,6 @@ export const serverSidePoster = async (data, listName) => {
 }
 
 export const authPoster = (data) => {
-
-    console.log('starting authposter', data)
     return fetch(`https://music-scene-api.herokuapp.com/api/auth/token/login/`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -67,7 +65,4 @@ export const authPoster = (data) => {
         console.log('returning auth resp data', _d)
         return _d
     })
-
-    console.log('end authposter', authdata)
-    return authdata
 }

@@ -10,18 +10,34 @@ export const fetcher = async (...args) => {
     }
 };
 
-export const poster = async ({ title, content }) => {
-    try {
-        const fd = new FormData();
-        fd.append('title', title);
-        fd.append('content', content);
+export const poster = async (data, listName, redir) => {
+    const tempMetaFields = [
+        'email',
+        'layout',
+    ];
 
-        await fetch('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', {
+    try {
+        const fd = new FormData(),
+            meta = {};
+
+        for (let d in data) {
+            if (tempMetaFields.indexOf(d) === -1) {
+                fd.append(d, data[d]);
+            }
+            else {
+                meta[d] = data[d];
+            }
+        }
+
+        fd.append('meta', JSON.stringify(meta));
+
+        await fetch(`https://music-scene-api.herokuapp.com/api/${listName}/items/`, {
             method: 'POST',
             mode: 'no-cors',
             body: fd
         });
-        await Router.push('/community/bulletins/');
+
+        await Router.push(redir);
     }
     catch (err) {
         console.error(err);

@@ -31,7 +31,7 @@ export const poster = async (data, listName, redir) => {
 
         fd.append('meta', JSON.stringify(meta));
 
-        await fetch(`https://music-scene-api.herokuapp.com/api/v1${listName}/items/`, {
+        await fetch(`https://music-scene-api.herokuapp.com/api/v1/${listName}/items/`, {
             method: 'POST',
             mode: 'no-cors',
             body: fd

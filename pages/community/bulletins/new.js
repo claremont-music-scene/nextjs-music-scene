@@ -1,17 +1,22 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
 import { useForm, FormProvider } from 'react-hook-form';
-import { poster } from '../../../util/crud';
+import {fetcher, poster} from '../../../util/crud';
 import Link from 'next/link';
 
 import FieldGroup from '../../../components/forms/field-group';
 
-const NewBulletin = () => {
+export async function getStaticProps() {
+    const bulletinItemsEndpoint = `${process.env.API_URL}/bulletin_board/items/`
+    return {props: {bulletinItemsEndpoint}}
+}
+
+const NewBulletin = ({ bulletinItemsEndpoint }) => {
     const methods = useForm(),
         { handleSubmit } = methods,
 
         onSubmit = (data) => {
             console.log('attempting to submit data:', data);
-            poster(data, 'bulletin_board', '/community/bulletins/');
+            poster(data, bulletinItemsEndpoint, '/community/bulletins/');
         };
 
     const tempUserId = 0;

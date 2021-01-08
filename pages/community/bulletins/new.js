@@ -6,7 +6,7 @@ import Link from 'next/link';
 import FieldGroup from '../../../components/forms/field-group';
 
 export async function getStaticProps() {
-    const bulletinItemsEndpoint = `${process.env.API_URL}/bulletins/items/`
+    const bulletinItemsEndpoint = `${process.env.API_URL}/bulletin_board/items/`
     return {props: {bulletinItemsEndpoint}}
 }
 

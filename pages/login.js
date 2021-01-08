@@ -3,13 +3,18 @@ import {useForm} from "react-hook-form";
 import { useRouter } from 'next/router';
 
 
-export default function Login() {
+export async function getStaticProps() {
+    const siteUrl = process.env.SITE_URL
+    return {props: {siteUrl}}
+}
+
+export default function Login({ siteUrl }) {
     const router = useRouter();
 
     const { register, handleSubmit, errors } = useForm(),
         onSubmit = async (data) => {
             // TODO get site host from config
-            let url = new URL('http://localhost:3000/api/login')
+            let url = new URL(`${siteUrl}/api/login`)
             Object.keys(data).forEach(key => url.searchParams.append(key, data[key]))
             fetch(url, {
                 params: JSON.stringify(data),

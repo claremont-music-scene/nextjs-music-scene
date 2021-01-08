@@ -11,7 +11,7 @@ export const fetcher = async (...args) => {
 };
 
 
-export const poster = async (data, listName, redir) => {
+export const poster = async (data, endpoint, redir) => {
     const tempMetaFields = [
         'email',
         'layout',
@@ -32,7 +32,7 @@ export const poster = async (data, listName, redir) => {
 
         fd.append('meta', JSON.stringify(meta));
 
-        await fetch(`https://music-scene-api.herokuapp.com/api/v1/${listName}/items/`, {
+        await fetch(endpoint, {
             method: 'POST',
             mode: 'no-cors',
             body: fd
@@ -45,15 +45,8 @@ export const poster = async (data, listName, redir) => {
     }
 }
 
-export const serverSidePoster = async (data, listName) => {
-    const res = await fetch(`https://music-scene-api.herokuapp.com/api/v1/${listName}/items/`, {
-        method: 'POST',
-        body: data
-    })
-}
-
-export const authPoster = (data) => {
-    return fetch(`https://music-scene-api.herokuapp.com/api/auth/token/login/`, {
+export const authPoster = (authUrl, data) => {
+    return fetch(authUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)

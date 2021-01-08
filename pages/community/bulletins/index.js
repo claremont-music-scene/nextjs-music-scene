@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 
 export async function getServerSideProps(context) {
-    const posts = await fetcher('https://music-scene-api.herokuapp.com/api/v1/bulletin_board/items/');
+    const posts = await fetcher(`${process.env.API_URL}/bulletin_board/items/`);
     return {props: {posts}};
 }
 

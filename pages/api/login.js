@@ -3,7 +3,8 @@ import { serialize } from 'cookie';
 
 export default async function handler(req, res) {
     res.setHeader('Content-Type', 'application/json')
-    const loginResult = await authPoster(req.query)
+    const {body} = req
+    const loginResult = await authPoster(`${process.env.API_URL}/auth/token/login/`, body)
     if (loginResult['auth_token']) {
         res.setHeader('Set-Cookie', serialize('token', loginResult['auth_token'], {
             //one week

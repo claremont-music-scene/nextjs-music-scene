@@ -13,17 +13,20 @@ export default function Login({ siteUrl }) {
 
     const { register, handleSubmit, errors } = useForm(),
         onSubmit = async (data) => {
-            // TODO get site host from config
             let url = new URL(`${siteUrl}/api/login`)
-            Object.keys(data).forEach(key => url.searchParams.append(key, data[key]))
             fetch(url, {
-                params: JSON.stringify(data),
+                method: 'POST',
+                body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }).then((res) => {
-                console.log('redirecting to bulletins')
-                router.push('/community/bulletins')
+
+                if (res.ok) {
+                    console.log('redirecting to bulletins')
+                    router.push('/community/bulletins')
+                }
+                //TODO error message
             })
         };
 

@@ -59,7 +59,7 @@ const NewBulletin = ({ bulletinItemsEndpoint }) => {
                         fieldId='content'
                         displayName='Content'
                         isRequired={true}
-                        inputType='textarea'
+                        inputType='html'
                     />
 
                     <input type='submit' />

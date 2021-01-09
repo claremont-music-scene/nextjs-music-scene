@@ -1,19 +1,20 @@
 import SingleColumnLayout from "../components/layouts/single-column";
 import {useForm} from "react-hook-form";
 import { useRouter } from 'next/router';
+import Box from "../components/box";
 
 
 export async function getStaticProps() {
-    const siteUrl = process.env.SITE_URL
-    return {props: {siteUrl}}
+    const { SITE_URL, SITE_NAME } = process.env
+    return {props: {SITE_NAME, SITE_URL}}
 }
 
-export default function Login({ siteUrl }) {
+export default function Login({ SITE_NAME, SITE_URL }) {
     const router = useRouter();
 
     const { register, handleSubmit, errors } = useForm(),
         onSubmit = async (data) => {
-            let url = new URL(`${siteUrl}/api/login`)
+            let url = new URL(`${SITE_URL}/api/login`)
             fetch(url, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -31,21 +32,22 @@ export default function Login({ siteUrl }) {
         };
 
     return (<SingleColumnLayout>
-        <div>
-            Login to Claremont Music Scene:
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor='username'>Email or Username</label>
-                    <input name='username' id='username' type="text" ref={register({ required: true })} />
-                    <div className="field-error">{errors.username && 'Email or username required.'}</div>
-                </div>
-                <div>
-                    <label htmlFor='password'>Password</label>
-                    <input name='password' id='password' type="password" ref={register({ required: true })} />
-                    <div className="field-error">{errors.password && 'Password required.'}</div>
-                </div>
-                <input type='submit' />
-            </form>
-        </div>
+        <h3>Login to {SITE_NAME}</h3>
+        <Box>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <label htmlFor='username'>Username</label>
+                        <input name='username' id='username' type="text" ref={register({ required: true })} />
+                        <div className="field-error">{errors.username && 'Email or username required.'}</div>
+                    </div>
+                    <div>
+                        <label htmlFor='password'>Password</label>
+                        <input name='password' id='password' type="password" ref={register({ required: true })} />
+                        <div className="field-error">{errors.password && 'Password required.'}</div>
+                    </div>
+                    <input type='submit' />
+                </form>
+        </Box>
+
     </SingleColumnLayout>)
 }

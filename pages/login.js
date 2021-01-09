@@ -36,12 +36,12 @@ export default function Login({ siteUrl }) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor='username'>Email or Username</label>
-                    <input name='username' id='username' ref={register({ required: true })} />
+                    <input name='username' id='username' type="text" ref={register({ required: true })} />
                     <div className="field-error">{errors.username && 'Email or username required.'}</div>
                 </div>
                 <div>
                     <label htmlFor='password'>Password</label>
-                    <input name='password' id='password' ref={register({ required: true })} />
+                    <input name='password' id='password' type="password" ref={register({ required: true })} />
                     <div className="field-error">{errors.password && 'Password required.'}</div>
                 </div>
                 <input type='submit' />

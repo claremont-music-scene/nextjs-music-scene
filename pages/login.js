@@ -33,8 +33,9 @@ export default function Login({ SITE_NAME, SITE_URL }) {
 
     return (<SingleColumnLayout>
         <h3>Login to {SITE_NAME}</h3>
+        <style>{`.box {background: var(--sitecolor-lightestgray)}`}</style>
         <Box>
-                <form onSubmit={handleSubmit(onSubmit)}>
+             <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <label htmlFor='username'>Username</label>
                         <input name='username' id='username' type="text" ref={register({ required: true })} />
@@ -45,7 +46,7 @@ export default function Login({ SITE_NAME, SITE_URL }) {
                         <input name='password' id='password' type="password" ref={register({ required: true })} />
                         <div className="field-error">{errors.password && 'Password required.'}</div>
                     </div>
-                    <input type='submit' />
+                    <input type='submit' value="Sign In"/>
                 </form>
         </Box>
 

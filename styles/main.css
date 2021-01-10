@@ -8,10 +8,14 @@
   --sitecolor-blue: #1b75bc;
   --sitecolor-lightblue: #00aeef;
   --sitecolor-indigo: #2b3990;
+  --sitecolor-indigolighter: #2b399022;
   --sitecolor-dark: #262262;
-    --sitecolor-darker: #131131;
+  --sitecolor-darker: #131131;
 
   --sitecolor-green: #39b54a;
+  --sitecolor-green-tint-mid: #88d292;
+  --sitecolor-green-tint-light: #d7f0da;
+
   --sitecolor-lightgreen: #8dc63f;
   --sitecolor-darkyellow: #dfd723;
   --sitecolor-yellow: #fff200;
@@ -19,6 +23,7 @@
   --sitecolor-red: #ed1c24;
   --sitecolor-lightestgray: #f5f6f7;
   --sitecolor-lightgray: #dde1e2;
+  --sitecolor-lightgray-opac: #dde1e2dd;
 
   --sitecolor-primary: var(--sitecolor-blue);
 }

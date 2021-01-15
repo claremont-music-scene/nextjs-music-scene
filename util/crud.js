@@ -1,4 +1,6 @@
 import Router from 'next/router';
+import { getSession } from 'next-auth/client'
+import FormData from 'form-data'
 
 export const fetcher = async (...args) => {
     try {
@@ -45,11 +47,41 @@ export const poster = async (data, endpoint, redir) => {
     }
 }
 
-export const securePoster = (endpoint, session, data) => {
 
-    // TODO preflight OPTIONS, CORS
+export const formJSONtoFormData = (data) => {
+    const tempMetaFields = [
+        'email',
+        'layout',
+    ];
 
-    return fetch(endpoint, {
+    try {
+        const fd = new FormData()
+        const meta = {};
+
+        for (let d in data) {
+            if (tempMetaFields.indexOf(d) === -1) {
+                fd.append(d, data[d]);
+            }
+            else {
+                meta[d] = data[d];
+            }
+        }
+
+        fd.append('meta', JSON.stringify(meta));
+        return fd
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
+export const securePoster = async (endpoint, data) => {
+
+    console.log('securePoster', endpoint, data)
+    const session = await getSession()
+    console.log('session is', session)
+
+    return fetch(`/api${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -5,14 +5,18 @@ import {poster, securePoster} from '../../util/crud';
 
 
 
-const NewBulletin = ({bulletinItemsEndpoint, session}) => {
+const NewBulletin = ({session}) => {
     const methods = useForm(),
         {handleSubmit} = methods,
 
         onSubmit = (data) => {
             console.log('attempting to submit data:', data);
-            //TODO post with token
-            securePoster(bulletinItemsEndpoint, session, data);
+
+            // TODO adding category
+            data.category = 1
+
+            data.user = session.userId
+            securePoster('/bulletin_board/items/', data);
         };
 
     return (

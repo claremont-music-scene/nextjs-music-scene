@@ -45,6 +45,27 @@ export const poster = async (data, endpoint, redir) => {
     }
 }
 
+export const securePoster = (endpoint, session, data) => {
+
+    // TODO preflight OPTIONS, CORS
+
+    return fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain',
+            'Authorization': `Token ${session.apiToken}`
+        },
+        body: JSON.stringify(data)
+    }).then((res) => {
+        //TODO handle fail
+        console.log('got secure post resp')
+        return res.json()
+    }).then((_d) => {
+        console.log('returning post resp data', _d)
+        return _d
+    })
+}
+
 export const authPoster = (authUrl, data) => {
     return fetch(authUrl, {
         method: 'POST',

@@ -18,11 +18,19 @@ const options = {
                 })
                 if (authRes && authRes.auth_token) {
 
-                    //TODO request user info
-                    //fetch()
+                    const userRes = await fetch(`${process.env.API_URL}/auth/users/me/`, {
+                        headers: {
+                            Authorization: `Token ${authRes.auth_token}`
+                        }
+                    })
+                    const userDeets = await userRes.json()
 
                     // Any object returned will be saved in `user` property of the JWT
-                    return Promise.resolve({apiToken: authRes.auth_token})
+                    return Promise.resolve({
+                        apiToken: authRes.auth_token,
+                        username: userDeets.username,
+                        userId: userDeets.id
+                    })
                 } else {
                     // If you return null or false then the credentials will be rejected
                     return Promise.resolve(null)
@@ -77,17 +85,21 @@ const options = {
 
     callbacks: {
         jwt: async (token, user, account, profile, isNewUser) => {
-            const isSignIn = user ? true : false;
+            const isSignIn = user ? true : false
             if (isSignIn) {
-                token.apiToken = user.apiToken;
+                token.apiToken = user.apiToken
+                token.username = user.username
+                token.userId = user.userId
             }
             return Promise.resolve(token);
         },
         session: async (session, user) => {
             if (user.apiToken) {
                 session.apiToken = user.apiToken
+                session.username = user.username
+                session.userId = user.userId
             }
-            return Promise.resolve(session);
+            return Promise.resolve(session)
         }
     }
 

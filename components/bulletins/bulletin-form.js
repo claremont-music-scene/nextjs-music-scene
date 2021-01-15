@@ -1,7 +1,7 @@
 import {FormProvider, useForm} from 'react-hook-form';
 import Link from 'next/link';
 import FieldGroup from '../forms/field-group';
-import {poster} from '../../util/crud';
+import {poster, securePoster} from '../../util/crud';
 
 
 
@@ -11,15 +11,13 @@ const NewBulletin = ({bulletinItemsEndpoint, session}) => {
 
         onSubmit = (data) => {
             console.log('attempting to submit data:', data);
-
-            //TODO add user ID to data
-
-            poster(data, bulletinItemsEndpoint, '/community/bulletins/');
+            //TODO post with token
+            securePoster(bulletinItemsEndpoint, session, data);
         };
 
     return (
             <FormProvider {...methods} >
-                <p>Welcome {session.apiToken}</p>
+                <p>Welcome {session.username}</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <FieldGroup

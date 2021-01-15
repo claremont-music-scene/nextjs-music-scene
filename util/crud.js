@@ -52,7 +52,7 @@ export const securePoster = (endpoint, session, data) => {
     return fetch(endpoint, {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain',
+            'Content-Type': 'application/json',
             'Authorization': `Token ${session.apiToken}`
         },
         body: JSON.stringify(data)

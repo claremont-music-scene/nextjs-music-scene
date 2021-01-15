@@ -1,77 +1,61 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
-import { useForm, FormProvider } from 'react-hook-form';
-import {fetcher, poster} from '../../../util/crud';
-import Link from 'next/link';
+import {Provider, useSession} from 'next-auth/client'
+import NewBulletin from '../../../components/bulletins/bulletin-form'
+import SignUp from "../../../components/signup";
 
-import FieldGroup from '../../../components/forms/field-group';
 
 export async function getStaticProps() {
     const bulletinItemsEndpoint = `${process.env.API_URL}/bulletin_board/items/`
     return {props: {bulletinItemsEndpoint}}
 }
 
-const NewBulletin = ({ bulletinItemsEndpoint }) => {
-    const methods = useForm(),
-        { handleSubmit } = methods,
 
-        onSubmit = (data) => {
-            console.log('attempting to submit data:', data);
-            poster(data, bulletinItemsEndpoint, '/community/bulletins/');
-        };
 
-    const tempUserId = 0;
+export default function Page () {
+    const [ session, loading ] = useSession()
 
+    // Fetch content from protected route
+    // useEffect(()=>{
+    //     const fetchData = async () => {
+    //         const res = await fetch('/api/examples/protected')
+    //         const json = await res.json()
+    //         if (json.content) { setContent(json.content) }
+    //     }
+    //     fetchData()
+    // },[session])
+
+    // When rendering client side don't display anything until loading is complete
+    if (typeof window !== 'undefined' && loading) return null
+
+    // If no session exists, display access denied message
+    if (!session) { return  <SingleColumnLayout><SignUp/></SingleColumnLayout> }
+
+    // If session exists, display content
     return (
-        <SingleColumnLayout>
-            <FormProvider {...methods} >
-                <form onSubmit={handleSubmit(onSubmit)}>
+        <Provider
+            // Provider options are not required but can be useful in situations where
+            // you have a short session maxAge time. Shown here with default values.
+            options={{
+                // Client Max Age controls how often the useSession in the client should
+                // contact the server to sync the session state. Value in seconds.
+                // e.g.
+                // * 0  - Disabled (always use cache value)
+                // * 60 - Sync session state with server if it's older than 60 seconds
+                clientMaxAge: 0,
+                // Keep Alive tells windows / tabs that are signed in to keep sending
+                // a keep alive request (which extends the current session expiry) to
+                // prevent sessions in open windows from expiring. Value in seconds.
+                //
+                // Note: If a session has expired when keep alive is triggered, all open
+                // windows / tabs will be updated to reflect the user is signed out.
+                keepAlive: 0
+            }}
+            session={session} >
 
-                    {!tempUserId && <FieldGroup
-                        fieldId='email'
-                        displayName='Your Email Address'
-                        description='Email address is required for anonymous posts'
-                        isRequired={true}
-                        inputType='email'
-                    />}
+            <SingleColumnLayout>
+                <NewBulletin/>
+            </SingleColumnLayout>
+        </Provider>
 
-                    <FieldGroup
-                        fieldId='layout'
-                        displayName='Layout'
-                        isRequired={true}
-                        inputType='select'
-                        options={[
-                            'No Image',
-                            'Full-Size Image (no background or text)',
-                            'Full-Size Image with Title as caption',
-                            'Split Vertical Image and Text',
-                            'Small Square Thumbnail in Corner',
-                        ]}
-                    />
-
-                    <FieldGroup
-                        fieldId='title'
-                        displayName='Title'
-                        isRequired={true}
-                        inputType='text'
-                    />
-
-                    <FieldGroup
-                        fieldId='content'
-                        displayName='Content'
-                        isRequired={true}
-                        inputType='html'
-                    />
-
-                    <input type='submit' />
-
-                    <Link href='/community/bulletins/'>
-                        <a>Back to bulletins</a>
-                    </Link>
-
-                </form>
-            </FormProvider>
-        </SingleColumnLayout>
-    );
+    )
 }
-
-export default NewBulletin;

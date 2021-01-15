@@ -17,6 +17,10 @@ const options = {
                     password: credentials.password
                 })
                 if (authRes && authRes.auth_token) {
+
+                    //TODO request user info
+                    //fetch()
+
                     // Any object returned will be saved in `user` property of the JWT
                     return Promise.resolve({apiToken: authRes.auth_token})
                 } else {

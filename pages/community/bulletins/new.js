@@ -5,12 +5,14 @@ import SignUp from "../../../components/signup";
 
 
 export async function getStaticProps() {
+    //const session = await getSession()
     const bulletinItemsEndpoint = `${process.env.API_URL}/bulletin_board/items/`
+    console.log('bullly proprs', bulletinItemsEndpoint)
     return {props: {bulletinItemsEndpoint}}
 }
 
 
-export default function Page () {
+export default function Page (props) {
     const [ session, loading ] = useSession()
 
     // When rendering client side don't display anything until loading is complete
@@ -42,7 +44,7 @@ export default function Page () {
             session={session} >
 
             <SingleColumnLayout>
-                <NewBulletin/>
+                <NewBulletin bulletinItemsEndpoint={props.bulletinItemsEndpoint} session={session}/>
             </SingleColumnLayout>
         </Provider>
 

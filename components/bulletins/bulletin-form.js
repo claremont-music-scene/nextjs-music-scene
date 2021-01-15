@@ -4,7 +4,8 @@ import FieldGroup from '../forms/field-group';
 import {poster} from '../../util/crud';
 
 
-const NewBulletin = ({bulletinItemsEndpoint}) => {
+
+const NewBulletin = ({bulletinItemsEndpoint, session}) => {
     const methods = useForm(),
         {handleSubmit} = methods,
 
@@ -18,6 +19,7 @@ const NewBulletin = ({bulletinItemsEndpoint}) => {
 
     return (
             <FormProvider {...methods} >
+                <p>Welcome {session.apiToken}</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <FieldGroup

@@ -1,11 +1,13 @@
 import {FormProvider, useForm} from 'react-hook-form';
 import Link from 'next/link';
 import FieldGroup from '../forms/field-group';
-import {poster, securePoster} from '../../util/crud';
+import {securePoster} from '../../util/crud';
+import Router from 'next/router';
+import {useSession} from 'next-auth/client'
 
 
-
-const NewBulletin = ({session}) => {
+const BulletinForm = () => {
+    const [session, loading] = useSession()
     const methods = useForm(),
         {handleSubmit} = methods,
 
@@ -16,14 +18,18 @@ const NewBulletin = ({session}) => {
             data.category = 1
 
             data.user = session.userId
-            securePoster('/bulletin_board/items/', data);
+            securePoster('/bulletin_board/items/', data).then((result) => {
+
+                console.log('got securePoster res', result)
+                if (result.id) {
+                    Router.push('/community/bulletins')
+                }
+            })
         };
 
     return (
             <FormProvider {...methods} >
-                <p>Welcome {session.username}</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
-
                     <FieldGroup
                         fieldId='layout'
                         displayName='Layout'
@@ -63,4 +69,4 @@ const NewBulletin = ({session}) => {
     );
 }
 
-export default NewBulletin;
+export default BulletinForm;

@@ -52,8 +52,6 @@ const options = {
 
     debug: false,
 
-    secret: process.env.SECRET,
-
     session: {
         // Use JSON Web Tokens for session instead of database sessions.
         // This option can be used with or without a database for users/accounts.

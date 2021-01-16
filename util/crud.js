@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import { getSession } from 'next-auth/client'
-import FormData from 'form-data'
+
 
 export const fetcher = async (...args) => {
     try {
@@ -75,6 +75,7 @@ export const formJSONtoFormData = (data) => {
     }
 }
 
+
 export const securePoster = async (endpoint, data) => {
 
     console.log('securePoster', endpoint, data)
@@ -97,6 +98,7 @@ export const securePoster = async (endpoint, data) => {
         return _d
     })
 }
+
 
 export const authPoster = (authUrl, data) => {
     return fetch(authUrl, {

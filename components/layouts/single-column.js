@@ -2,9 +2,9 @@ import HeaderSocialLinks from "../header-social-links";
 import Link from "next/link";
 import Nav from "../nav";
 import Footer from "../footer";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 
-export default function SingleColumnLayout({ children }) {
+export default function SingleColumnLayout({children}) {
     const router = useRouter()
     const parts = router.pathname.split('/')
     let crumbs = []
@@ -21,7 +21,7 @@ export default function SingleColumnLayout({ children }) {
                         <Link href="/"><a>Home</a></Link>
                         {crumbs.map((crumb, idx) => {
                             return (<span key={idx}>&nbsp;
-                                <Link href={`/${crumb}/`}>
+                                    <Link href={`/${crumb}/`}>
                                     <a>{crumb}</a>
                                 </Link></span>
                             )
@@ -32,8 +32,8 @@ export default function SingleColumnLayout({ children }) {
             </div>
             <div id="sidebar" className="inactive">
                 <div className="inner">
-                    <Nav />
-                    <Footer />
+                    <Nav/>
+                    <Footer/>
                 </div>
                 <a href="#sidebar" className="toggle">Toggle</a>
             </div>

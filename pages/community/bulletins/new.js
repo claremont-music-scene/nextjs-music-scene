@@ -2,7 +2,12 @@ import SingleColumnLayout from '../../../components/layouts/single-column';
 import {useSession} from 'next-auth/client'
 import BulletinForm from '../../../components/bulletins/bulletin-form'
 import SignUp from "../../../components/signup";
+import {apiGetter} from "../../../util/server";
 
+export async function getServerSideProps({ params }) {
+    const postStyles = await apiGetter('/bulletin_board/styles/');
+    return { props: { postStyles } };
+}
 
 export default function Page (props) {
     const [ session, loading ] = useSession()
@@ -16,7 +21,7 @@ export default function Page (props) {
     // If session exists, display content
     return (
             <SingleColumnLayout>
-                <BulletinForm />
+                <BulletinForm styleOptions={props.postStyles}/>
             </SingleColumnLayout>
     )
 }

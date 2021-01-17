@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 
 export default function BulletinCard({ bulletin }) {
     const {
-        meta,
         id,
         is_featured,
         featured_order,
@@ -11,14 +10,13 @@ export default function BulletinCard({ bulletin }) {
         content,
         image,
         date_created,
-        category
+        category,
+        style
     } = bulletin,
-
-        metadata = meta ? id >= 9 ? JSON.parse(meta) : meta : null, // temporarily complex
 
         bulletinClass = 'grid-cell clickable' + (is_featured ? ' feat-' + featured_order : ''),
 
-        layout = metadata && metadata.image_only ? 'Full-SizeImage(nobackgroundortext)' : metadata && metadata.layout ? metadata.layout : 'NoImage', // temporarily complex
+        layout = style.name,
 
         onClickCard = () => {
             Router.push('/community/bulletins/' + id);
@@ -33,11 +31,11 @@ export default function BulletinCard({ bulletin }) {
     let layoutHtml = <></>;
 
     switch (layout) {
-        case 'Full-SizeImage(nobackgroundortext)':
+        case 'Full-Size Image (no background or text)':
             layoutHtml = <div className='image-only'><img src={image} /></div>;
             break;
 
-        case 'Full-SizeImagewithTitleascaption':
+        case 'Full-Size Image with Title as caption':
             layoutHtml =
                 <div className='overlay-wrap'>
                     <div className='overlay-img'><img src={image} /></div>
@@ -45,7 +43,7 @@ export default function BulletinCard({ bulletin }) {
                 </div>;
             break;
 
-        case 'SplitVerticalImageandText':
+        case 'Split Vertical Image and Text':
             layoutHtml =
                 <div className='split-wrap vertical'>
                     <div className='image'><img src={image} /></div>
@@ -53,7 +51,7 @@ export default function BulletinCard({ bulletin }) {
                 </div>;
             break;
 
-        case 'SmallSquareThumbnailinCorner':
+        case 'Small Square Thumbnail in Corner':
             layoutHtml =
                 <div className='thumb-in-corner'>
                     <div className='image left'><img src={image} /></div>

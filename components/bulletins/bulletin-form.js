@@ -6,7 +6,7 @@ import {useSession} from 'next-auth/client'
 import {proxyPoster} from "../../util/client";
 
 
-const BulletinForm = () => {
+const BulletinForm = ({styleOptions}) => {
     const [session, loading] = useSession()
     const methods = useForm(),
         {handleSubmit} = methods,
@@ -30,17 +30,11 @@ const BulletinForm = () => {
             <FormProvider {...methods} >
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <FieldGroup
-                        fieldId='layout'
+                        fieldId='style'
                         displayName='Layout'
                         isRequired={true}
                         inputType='select'
-                        options={[
-                            'No Image',
-                            'Full-Size Image (no background or text)',
-                            'Full-Size Image with Title as caption',
-                            'Split Vertical Image and Text',
-                            'Small Square Thumbnail in Corner',
-                        ]}
+                        options={styleOptions}
                     />
 
                     <FieldGroup

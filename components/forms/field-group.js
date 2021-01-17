@@ -70,10 +70,10 @@ export default function FieldGroup({
                 >
                     {options.map(o =>
                         <option
-                            key={o.replace(/ /g, '')}
-                            value={o}
+                            key={o.name.replace(/ /g, '')}
+                            value={parseInt(o.id)}
                         >
-                            {o}
+                            {o.name}
                         </option>
                     )}
                 </select>;

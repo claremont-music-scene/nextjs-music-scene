@@ -1,11 +1,11 @@
 import SingleColumnLayout from "../../../components/layouts/single-column";
 import BulletinList from '../../../components/bulletins/bulletin-list';
-import {fetcher} from '../../../util/crud';
 import Link from 'next/link';
+import {apiGetter} from "../../../util/server";
 
 
 export async function getServerSideProps(context) {
-    const posts = await fetcher(`${process.env.API_URL}/bulletin_board/items/`);
+    const posts = await apiGetter(`/bulletin_board/items/`);
     return {props: {posts}};
 }
 

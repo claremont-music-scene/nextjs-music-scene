@@ -1,9 +1,9 @@
 import {FormProvider, useForm} from 'react-hook-form';
 import Link from 'next/link';
 import FieldGroup from '../forms/field-group';
-import {securePoster} from '../../util/crud';
 import Router from 'next/router';
 import {useSession} from 'next-auth/client'
+import {proxyPoster} from "../../util/client";
 
 
 const BulletinForm = () => {
@@ -18,9 +18,8 @@ const BulletinForm = () => {
             data.category = 1
 
             data.user = session.userId
-            securePoster('/bulletin_board/items/', data).then((result) => {
+            proxyPoster('/bulletin_board/items/', data).then((result) => {
 
-                console.log('got securePoster res', result)
                 if (result.id) {
                     Router.push('/community/bulletins')
                 }

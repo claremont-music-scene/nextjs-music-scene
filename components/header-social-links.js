@@ -3,7 +3,6 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 
 export default function HeaderSocialLinks() {
     const [ session, loading ] = useSession()
-    console.log('HSL ', session)
     return (
         <header id="header"><Link href="/" ><a className="logo"><strong>Claremont Music Scene</strong></a></Link>
 

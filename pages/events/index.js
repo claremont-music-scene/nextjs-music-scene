@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import VenueList from "../../components/venues/venue-list";
 import SingleColumnLayout from "../../components/layouts/single-column";
-import {fetcher} from "../../util/crud";
+import {apiGetter} from "../../util/server";
 
 
 export async function getStaticProps() {
-    const venues = await fetcher(`${process.env.API_URL}/venues/`)
+    const venues = await apiGetter(`/venues/`)
     return {props: {venues}}
 }
 

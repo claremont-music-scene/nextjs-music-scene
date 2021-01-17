@@ -1,40 +1,20 @@
+import {apiPoster} from "../../util/server";
+import {apiGetter} from "../../util/server";
 import {getSession} from "next-auth/client";
-import {formJSONtoFormData} from "../../util/crud";
+
 
 
 export default async function handler(req, res) {
-    const {
-        query: { proxy },
-        body
-    } = req
-    const session = await getSession({ req })
+    const {query: {proxy}} = req
+    //console.log('API proxy', req.method, proxy)
 
-    //console.log('API proxy', proxy, body)
-
-    // No help from Jobu
-    var formBody = [];
-    for (var property in body) {
-        var encodedKey = encodeURIComponent(property);
-        var encodedValue = encodeURIComponent(body[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
+    if (req.method == 'GET') {
+        return await apiGetter(proxy)
     }
-    formBody = formBody.join("&");
-
-    //make post to API
-    const endUrl = `${process.env.API_URL}/${proxy.join('/')}/`
-    const apiRes = await fetch(endUrl, {
-        method: 'POST',
-        body: formBody,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization: `Token ${session.apiToken}`
-        }
-    })
-
-    //TODO error handling
-    const result = await apiRes.json()
-
-    console.log('returning API res', result)
-    res.end(JSON.stringify(result))
+    else if (req.method == "POST") {
+        const {body} = req
+        const session = await getSession({ req })
+        const postRes = await apiPoster(`/${proxy.join('/')}/`, body, session)
+        res.send(JSON.stringify(postRes))
+    }
 }

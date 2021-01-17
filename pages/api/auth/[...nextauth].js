@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-import {authPoster} from "../../../util/crud";
+import {authPoster} from "../../../util/server";
 
 const options = {
     // Configure one or more authentication providers

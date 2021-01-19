@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import VenueList from "../../components/venues/venue-list";
 import SingleColumnLayout from "../../components/layouts/single-column";
+import {apiGetter} from "../../util/server";
+
 
 export async function getStaticProps() {
-    const res = await fetch('https://music-scene-api.herokuapp.com/api/venues/')
-    const venues = await res.json()
+    const venues = await apiGetter(`/venues/`)
     return {props: {venues}}
 }
 

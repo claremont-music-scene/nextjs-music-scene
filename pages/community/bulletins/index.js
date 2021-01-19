@@ -1,23 +1,15 @@
 import SingleColumnLayout from "../../../components/layouts/single-column";
 import BulletinList from '../../../components/bulletins/bulletin-list';
-import { fetcher } from '../../../util/crud';
-import useSWR from 'swr';
 import Link from 'next/link';
+import {apiGetter} from "../../../util/server";
 
-export async function getStaticProps() {
-    const posts = await fetcher('https://music-scene-api.herokuapp.com/api/bulletin_board/items/');
-    return { props: { posts } };
+
+export async function getServerSideProps(context) {
+    const posts = await apiGetter(`/bulletin_board/items/`);
+    return {props: {posts}};
 }
 
-export default function Bulletins(props) {
-    const { data, err } = useSWR('https://music-scene-api.herokuapp.com/api/bulletin_board/items/', fetcher, { initialData: props.posts });
-
-    if (err) {
-        console.log('Error fetching: ', err);
-        return <div>failed to load</div>;
-    }
-    if (!data) return <div>loading...</div>
-
+export default function Bulletins({ posts }) {
     return (
         <SingleColumnLayout>
             <div>
@@ -25,7 +17,7 @@ export default function Bulletins(props) {
                     <a>New bulletin</a>
                 </Link>
             </div>
-            <BulletinList bulletins={data} />
+            <BulletinList bulletins={posts}/>
         </SingleColumnLayout>
     );
 }

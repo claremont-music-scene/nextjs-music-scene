@@ -1,35 +1,27 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
-import { poster } from '../../../util/crud';
-import { useForm } from 'react-hook-form';
-import Link from 'next/link';
+import {useSession} from 'next-auth/client'
+import BulletinForm from '../../../components/bulletins/bulletin-form'
+import SignUp from "../../../components/signup";
+import {apiGetter} from "../../../util/server";
 
-const NewBulletin = () => {
-    const { register, handleSubmit, errors } = useForm(),
-        onSubmit = (data) => {
-            console.log('attempting to submit data:', data);
-            poster(data);
-        };
-
-    return (
-        <SingleColumnLayout>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor='title'>Title</label>
-                    <input name='title' id='title' ref={register({ required: true })} />
-                    <div className="field-error">{errors.title && 'A post title is required.'}</div>
-                </div>
-                <div>
-                    <label htmlFor='content'>Content</label>
-                    <textarea name='content' id='content' ref={register({ required: true })} />
-                    <div className="field-error">{errors.content && 'Please enter some content for your post.'}</div>
-                </div>
-                <input type='submit' />
-                <Link href='/community/bulletins/'>
-                    <a>Back to bulletins</a>
-                </Link>
-            </form>
-        </SingleColumnLayout>
-    );
+export async function getServerSideProps({ params }) {
+    const postStyles = await apiGetter('/bulletin_board/styles/');
+    return { props: { postStyles } };
 }
 
-export default NewBulletin;
+export default function Page (props) {
+    const [ session, loading ] = useSession()
+
+    // When rendering client side don't display anything until loading is complete
+    if (typeof window !== 'undefined' && loading) return null
+
+    // If no session exists, display sign up / login view
+    if (!session) { return  <SingleColumnLayout><SignUp/></SingleColumnLayout> }
+
+    // If session exists, display content
+    return (
+            <SingleColumnLayout>
+                <BulletinForm styleOptions={props.postStyles}/>
+            </SingleColumnLayout>
+    )
+}

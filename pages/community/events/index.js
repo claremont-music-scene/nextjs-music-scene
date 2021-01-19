@@ -1,7 +1,5 @@
 import SingleColumnLayout from "../../../components/layouts/single-column";
 import EventList from '../../../components/events/event-list';
-import { fetcher } from '../../../util/crud';
-import useSWR from 'swr';
 import data from '../../../tempdata/events.json'; // temporary data
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';

@@ -1,6 +1,5 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
 import Event from '../../../components/events/event';
-import { fetcher } from '../../../util/crud';
 import data from '../../../tempdata/events.json'; // temporary data
 
 const { events } = data; // temporary data

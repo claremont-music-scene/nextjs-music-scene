@@ -3,7 +3,7 @@ import Link from 'next/link';
 import FieldGroup from '../forms/field-group';
 import Router from 'next/router';
 import {useSession} from 'next-auth/client'
-import {proxyPoster} from "../../util/client";
+import {apiPoster} from "../../util/client";
 
 
 const BulletinForm = ({styleOptions}) => {
@@ -18,7 +18,7 @@ const BulletinForm = ({styleOptions}) => {
             data.category = 1
 
             data.user = session.userId
-            proxyPoster('/bulletin_board/items/', data).then((result) => {
+            apiPoster('/bulletin_board/items/', data).then((result) => {
 
                 if (result.id) {
                     Router.push('/community/bulletins')

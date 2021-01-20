@@ -11,7 +11,7 @@ export const apiGetter = async (endpoint) => {
 }
 
 // server-side authenticated post to musicscene.city API
-export const apiPoster = async (endpoint, body, session) => {
+export const proxyPoster = async (endpoint, body, session) => {
 
     // No help from Jobu
     var formBody = [];

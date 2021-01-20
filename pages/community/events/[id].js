@@ -1,8 +1,8 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
 import Event from '../../../components/events/event';
-import data from '../../../tempdata/events.json'; // temporary data
+//import data from '../../../tempdata/events.json'; // temporary data
 
-const { events } = data; // temporary data
+//const { events } = data; // temporary data
 
 export async function getStaticProps({ params }) {
     // const ev = await fetcher('https://music-scene-api.herokuapp.com/api/events/items/' + params.id);

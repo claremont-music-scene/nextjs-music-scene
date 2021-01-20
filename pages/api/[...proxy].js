@@ -1,4 +1,4 @@
-import {apiPoster} from "../../util/server";
+import {proxyPoster} from "../../util/server";
 import {apiGetter} from "../../util/server";
 import {getSession} from "next-auth/client";
 
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     else if (req.method == "POST") {
         const {body} = req
         const session = await getSession({ req })
-        const postRes = await apiPoster(`/${proxy.join('/')}/`, body, session)
+        const postRes = await proxyPoster(`/${proxy.join('/')}/`, body, session)
         res.send(JSON.stringify(postRes))
     }
 }

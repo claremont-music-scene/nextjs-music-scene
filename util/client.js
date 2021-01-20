@@ -1,19 +1,9 @@
-// used by clients to make GET requests to the site's API proxy
-export const proxyGetter = async (endpoint) => {
-    try {
-        const res = await fetch(endpoint);
-        return res.json();
-    }
-    catch (err) {
-        console.error(err);
-    }
-}
 
 
-// used by clients to POST to the site's API proxy
-export const proxyPoster = async (endpoint, data, session) => {
+// used by clients to POST to MSC API via site API proxy
+export const apiPoster = async (endpoint, data, session) => {
 
-    //console.log('proxyPoster', endpoint, data, session)
+    //console.log('apiPoster', endpoint, data, session)
 
     return fetch(`/api${endpoint}`, {
         method: 'POST',

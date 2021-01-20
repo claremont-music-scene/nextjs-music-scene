@@ -9,10 +9,10 @@ export default function EventCard({ event }) {
             <div>
                 <div>
                     <Link href={'/community/events/' + event.id}>
-                        <a>{event.event_name}</a>
+                        <a>{event.title}</a>
                     </Link>
-                    <span> - {event.start_date}</span>
-                    <span> - {event.city}</span>
+                    <span> - {event.start}</span>
+                    <span> - [Location>]</span>
                 </div>
                 {/* <div dangerouslySetInnerHTML={{ __html: description }} /> */}
             </div>

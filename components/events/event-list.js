@@ -5,6 +5,7 @@ dayjs.extend(isBetween);
 
 
 export default function EventList({ events }) {
+    /*
     const today = dayjs(),
         tomorrow = today.add(1, 'd'),
         weekNext = today.add(1, 'w'),
@@ -40,15 +41,12 @@ export default function EventList({ events }) {
 
         futureByMonth = eventsByMonth(eFuture);
 
+     */
+
     return (
         <div>
             <h1>Current Events</h1>
-            {eToday.length > 0 && <EventGroup key='eToday' heading='Today' events={eToday} />}
-            {eTomorrow.length > 0 && <EventGroup key='eTomorrow' heading='Tomorrow' events={eTomorrow} />}
-            {eThisWeek.length > 0 && <EventGroup key='eThisWeek' heading='This Week' events={eThisWeek} />}
-            {eNextWeek.length > 0 && <EventGroup key='eNextWeek' heading='Next Week' events={eNextWeek} />}
-            {eThisMonth.length > 0 && <EventGroup key='eThisMonth' heading='This Month' events={eThisMonth} />}
-            {Object.keys(futureByMonth).map(month => <EventGroup key={month.replace(/ /g, '')} heading={month} events={futureByMonth[month]} />)}
+            <EventGroup events={events} heading={'Some Events'}/>
         </div>
     );
 }

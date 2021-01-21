@@ -6,11 +6,11 @@ export default function Event({ e }) {
 
     return (
         <div>
-            <h1>{e.event_name}</h1>
+            <h1>{e.title}</h1>
             <h2>When</h2>
             <div className='content-group'>
-                {e.start_date}
-                {e.end_date && ' to ' + e.end_date}
+                {e.start}
+                {e.end && ' to ' + e.end}
             </div>
             <h2>Where</h2>
             <div className='content-group'>

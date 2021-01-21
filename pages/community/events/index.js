@@ -1,14 +1,10 @@
 import SingleColumnLayout from "../../../components/layouts/single-column";
 import EventList from '../../../components/events/event-list';
-//import data from '../../../tempdata/events.json'; // temporary data
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import {apiGetter} from "../../../util/server";
 
 dayjs.extend(isSameOrAfter);
-
-//const { events } = data, // temporary data
-//    currentEvents = events.filter(e => dayjs(e.start_date).isSameOrAfter(dayjs())).sort((a, b) => dayjs(a.start_date) - dayjs(b.start_date));
 
 export async function getStaticProps() {
     const events = await apiGetter('/events/occurrence/')

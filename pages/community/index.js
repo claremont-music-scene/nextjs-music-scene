@@ -10,6 +10,12 @@ export default function Community() {
         </Head>
 
         <section>
+            <Link href={'/community/events'}><a>Events</a></Link>&nbsp;|&nbsp;
+            <Link href={'/community/bulletins'}><a>Bulletin Board</a></Link>
+
+        </section>
+
+        <section>
             <header className="main"><h2>Community and Connections</h2></header>
             <p>The Community is where we bring together the different foundational elements that a
                 thriving arts and music scene should have: education, supplies, space, and participants.

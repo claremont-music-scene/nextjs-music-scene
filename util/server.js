@@ -1,7 +1,11 @@
 
 // server-side GET to the musicscene.city API
-export const apiGetter = async (endpoint) => {
+export const apiGetter = async (endpoint, params=null) => {
     try {
+        if (params) {
+            const qp = new URLSearchParams(params)
+            endpoint = `${endpoint}?${params}`
+        }
         const res = await fetch(`${process.env.API_URL}${endpoint}`);
         return res.json();
     }

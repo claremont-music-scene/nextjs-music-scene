@@ -18,7 +18,7 @@ describe('Load Event from Events Page', () => {
         cy.visit('http://localhost:3000/community/events')
         cy.get('.event-card > :nth-child(1) > div > a').click()
 
-        cy.get(':nth-child(6) > a').click()
+        cy.get(':nth-child(3) > :nth-child(4) > a').click()
         cy.url().should('equal', 'http://localhost:3000/community/events')
     })
 

@@ -1,31 +1,39 @@
 import Link from 'next/link';
+import dayjs from 'dayjs'
 
 export default function Event({ e }) {
     const description = e.description ? e.description.replace(/\n/g, '<br/>') : null,
         contact = e.contact_info ? e.contact_info.replace(/\n/g, '<br/>') : null;
+
+    const startDisplay = dayjs(e.start).format('dddd MMM D, ha')
+    //TODO assumes same day end
+    const endDisplay = e.end ? dayjs(e.end).format('ha') : ''
+
 
     return (
         <div>
             <h1>{e.title}</h1>
             <h2>When</h2>
             <div className='content-group'>
-                {e.start}
-                {e.end && ' to ' + e.end}
+                {startDisplay}
+                {e.end && ' to ' + endDisplay}
             </div>
-            <h2>Where</h2>
-            <div className='content-group'>
-                {e.street && <div>{e.street}</div>}
-                <div>
+            {e.location && (<>
+                <h2>Where</h2>
+                <div className='content-group'>
+                    {e.street && <div>{e.street}</div>}
+                        <div>
                     {e.city && e.city}
                     {e.city && e.state && ', '}
                     {e.state && e.state}
                     {e.state && e.zip && ' '}
                     {e.zip && e.zip}
+                        </div>
+                    {e.lat && e.long && <div>
+                        <a target='_blank' href={`https://www.google.com/maps/search/?api=1&query=${e.lat},${e.long}`}>Find this location on Google Maps</a>
+                        </div>}
                 </div>
-                {e.lat && e.long && <div>
-                    <a target='_blank' href={`https://www.google.com/maps/search/?api=1&query=${e.lat},${e.long}`}>Find this location on Google Maps</a>
-                </div>}
-            </div>
+            </>)}
             {description && <>
                 <h2>Description</h2>
                 <div className='content-group'

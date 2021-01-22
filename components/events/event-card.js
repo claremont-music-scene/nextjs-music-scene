@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import {getSiteEventPath} from "../../util/events";
+import dayjs from "dayjs";
 
 export default function EventCard({event}) {
     const eventClass = 'event-card'/*  + (event.isFeature ? ' feat-' + event.isFeature : '') *//* ,
@@ -13,8 +14,8 @@ export default function EventCard({event}) {
                     <Link href={eventUrl}>
                         <a>{event.title}</a>
                     </Link>
-                    <span> - {event.start}</span>
-                    <span> - [Location]</span>
+                    <span> - {dayjs(event.start).format('dddd MMM D, ha')}</span>
+                    {event.location && <span> - {event.location}</span>}
                 </div>
                 {/* <div dangerouslySetInnerHTML={{ __html: description }} /> */}
             </div>

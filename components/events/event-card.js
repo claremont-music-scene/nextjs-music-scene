@@ -1,14 +1,11 @@
 import Link from 'next/link';
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-dayjs.extend(utc)
+import {getSiteEventPath} from "../../util/events";
 
 export default function EventCard({event}) {
     const eventClass = 'event-card'/*  + (event.isFeature ? ' feat-' + event.isFeature : '') *//* ,
         description = event.description ? event.description.replace(/\n/g, '<br/>') : null */;
 
-    const startDate = dayjs(event.start).utc()
-    const eventUrl = `/community/events/${event.event_id}/${startDate.year()}/${startDate.month()+1}/${startDate.date()}/${startDate.hour()}/${startDate.minute()}/${startDate.second()}`
+    const eventUrl = `/community/events/${getSiteEventPath(event)}`
     return (
         <div key={event.event_id} className={eventClass}>
             <div>

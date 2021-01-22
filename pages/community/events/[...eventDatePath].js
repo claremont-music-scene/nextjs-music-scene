@@ -1,40 +1,22 @@
 import SingleColumnLayout from '../../../components/layouts/single-column';
 import Event from '../../../components/events/event';
 import {apiGetter} from "../../../util/server";
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-dayjs.extend(utc)
+import {getEventOccurrenceApiPath, getEventPathParts} from "../../../util/events";
 
 
 export async function getStaticProps({params}) {
-    const [eventId, year, month, day, hour, minute, second] = params.eventDatePath
-    const queryParams = new URLSearchParams({year, month, day, hour, minute, second})
-    const occurrence = await apiGetter(`/events/occurrence/${eventId}/?${queryParams}`)
+    const occurrence = await apiGetter(getEventOccurrenceApiPath(params.eventDatePath))
     return {props: {occurrence}};
 }
 
 export async function getStaticPaths() {
-
     const evs = await apiGetter('/events/occurrence/')
-
-    const paths = evs.map(ev => {
-        const ed = dayjs(ev.start).utc()
-        return {
-            params: {
-                eventDatePath: [
-                    ev.event_id.toString(),
-                    ed.year().toString(),
-                    (ed.month() + 1).toString(),
-                    ed.date().toString(),
-                    ed.hour().toString(),
-                    ed.minute().toString(),
-                    ed.second().toString()
-                ]
-            }
-        }
-    })
     return {
-        paths: paths,
+        paths: evs.map(ev => ({
+            params: {
+                eventDatePath: getEventPathParts(ev)
+            }
+        })),
         fallback: false
     };
 }

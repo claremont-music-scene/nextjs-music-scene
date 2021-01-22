@@ -1,10 +1,15 @@
 import SingleColumnLayout from "../../components/layouts/single-column";
 import Head from "next/head";
+import OverviewBox from "../../components/overview-box";
+import LogoBanner from "../../components/logo-banner";
 
 export default function About() {
     return (
         <SingleColumnLayout>
             <Head><title>About Claremont Music Scene</title></Head>
+
+            <LogoBanner/>
+            <OverviewBox/>
 
             <section>
                 <header className="main"><h2>About Us</h2></header>

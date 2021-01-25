@@ -2,6 +2,9 @@ module.exports = {
   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // 'media' or 'class'
   theme: {
+    boxShadow: {
+      orange: '0 1px 3px 0 #fe6625, 0 1px 2px 0 #fb9334',
+    },
     extend: {
       colors: {
         orange: {
@@ -22,7 +25,7 @@ module.exports = {
           DEFAULT: '#167070'
         },
         twilight: '#1b292d',
-        midnight: '#0d0728',
+        midnight: '#0a051a',
         red: {
           light: '#ea4441',
           DEFAULT: '#c1140e'

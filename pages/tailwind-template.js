@@ -11,7 +11,7 @@ export default function HomePage() {
         <section className="px-5 lg:px-24 bg-midnight">
 
             <div className="container w-full pt-20 pb-10 mx-auto ">
-                <div className="bg-white shadow-orange-light">
+                <div className="bg-white shadow-orange">
                     <div className="flex flex-wrap p-4 ">
 
                         <CategoryAndDescriptionCard headline="First A Box" bgColor="yellow"/>

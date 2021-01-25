@@ -1,6 +1,7 @@
-export default function CategoryAndDescriptionCard({headline, bgColor='yellow'}) {
+export default function CategoryAndDescriptionCard({headline, bgColor='yellow', bgGradientFrom = 'yellow', bgGradientTo = 'orange'}) {
 
     const cardStyle = `w-full px-8 py-10 bg-${bgColor}`
+    const headlineStyle = `text-5xl font-teal leading-none tracking-tighter text-transparent bg-gradient-to-tr from-${bgGradientFrom} to-${bgGradientTo} bg-clip-text`
     return (
         <div className="lg:w-1/3 md:w-1/2 lg:-mt-12">
 
@@ -9,7 +10,7 @@ export default function CategoryAndDescriptionCard({headline, bgColor='yellow'})
                 <div className={cardStyle}>
                     <a href="#">
                         <div className="p-4 mb-1 bg-black">
-                            <h1 className="text-5xl font-teal leading-none tracking-tighter text-transparent bg-gradient-to-tr from-yellow to-orange bg-clip-text">
+                            <h1 className={headlineStyle}>
                                 {headline}
                             </h1>
                         </div>

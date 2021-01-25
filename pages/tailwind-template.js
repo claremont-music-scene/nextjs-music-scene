@@ -1,6 +1,7 @@
 import Header from "../components/header";
 import Menu from "../components/nav/menu";
 import CategoryAndDescriptionCard from "../components/cards/category-and-description";
+import CardRow from "../components/cards/row";
 
 export default function HomePage() {
     return (<>
@@ -10,107 +11,17 @@ export default function HomePage() {
 
         <section className="px-5 lg:px-24 bg-midnight">
 
-            <div className="container w-full pt-20 pb-10 mx-auto ">
-                <div className="bg-white shadow-orange">
-                    <div className="flex flex-wrap p-4 ">
+           <CardRow>
+                <CategoryAndDescriptionCard headline="First A Box" bgColor="yellow"/>
+                <CategoryAndDescriptionCard headline="Then Another" bgColor="teal"/>
+                <CategoryAndDescriptionCard headline="Looks like we're on a roll here" bgColor="cream"/>
+           </CardRow>
 
-                        <CategoryAndDescriptionCard headline="First A Box" bgColor="yellow"/>
-                        <CategoryAndDescriptionCard headline="Then Another" bgColor="teal"/>
-                        <CategoryAndDescriptionCard headline="Looks like we're on a roll here" bgColor="cream"/>
-
-                    </div>
-                </div>
-            </div>
-
-            <div className="container w-full py-10 mx-auto ">
-                <div className="bg-white shadow-green">
-                    <div className="flex flex-wrap p-4 ">
-                        <div className="lg:w-1/3 md:w-1/2 lg:-mt-12 ">
-                            <a href="#">
-                            </a>
-                            <div className="flex h-full"><a href="#">
-                            </a>
-                                <div className="w-full px-8 py-10 bg-green-900"><a href="#">
-                                    <div className="p-4 mb-1 bg-black ">
-                                        <h1 className="text-5xl font-black leading-none tracking-tighter text-transparent bg-gradient-to-tr from-blue-1000 to-pink-1000 bg-clip-text">
-                                            What was was that, then?
-                                        </h1>
-                                    </div>
-                                    <h1 className="p-4 mb-3 text-lg font-medium text-white uppercase bg-black">
-                                        food
-                                        <small className="text-xs text-pink-1000 ">
-                                            <span className="text-gray-500">BY</span>
-                                            Mike andreuzza </small>
-                                    </h1>
-                                    <p className="my-4 font-medium leading-none tracking-tighter">Burger King has
-                                        carried
-                                        out a comprehensive rebrand to update all elements of its visual identity
-                                        with a
-                                        design that it
-                                        describes as "mouthwatering, big and bold, playfully irreverent and proudly
-                                        true.
-                                    </p>
-                                </a><a href="#"
-                                       className="inline-flex items-center p-4 mt-4 font-black text-black text-1xl bg-gradient-to-tr from-blue-1000 to-pink-1000 md:mb-2 lg:mb-0 hover:text-white ">
-                                    Read it
-                                    <svg className="w-10 h-10 ml-2 -m-32" xmlns="http://www.w3.org/2000/svg"
-                                         viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                        <path fill="none" d="M0 0h24v24H0z"></path>
-                                        <path
-                                            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z">
-                                        </path>
-                                    </svg>
-                                </a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className="lg:w-1/3 md:w-1/2 lg:-mt-12 ">
-                            <a href="#">
-                                <div className="flex h-full">
-                                    <div className="w-full px-8 py-10 bg-black">
-                                        <div className="mb-1 bg-black">
-                                            <h1 className="py-4 text-2xl font-black leading-none tracking-tighter text-transparent uppercase bg-gradient-to-tr from-blue-1000 to-pink-1000 bg-clip-text">
-                                                Lime unveils next-gen scooter as it continues to inch toward
-                                                profitability,
-                                                so you know
-                                            </h1>
-                                        </div>
-                                        <h1 className="py-4 mb-3 text-lg font-medium text-white uppercase border-b border-pink-1000">
-                                            Scooters
-                                            <small className="text-xs text-pink-1000 ">
-                                                <span className="text-gray-500">BY</span>
-                                                Jack Sparrow </small>
-                                        </h1>
-                                        <p className="my-4 font-medium leading-none tracking-tighter text-white">
-                                            Lime unveiled its fourth-generation electric scooter with a swappable
-                                            battery
-                                            and enhanced safety features. The company
-                                            also announced it was “cash flow positive” in the third quarter of 2020.</p>
-                                        <div
-                                            className="inline-flex items-center p-4 mt-4 font-black text-white duration-500 ease-in-out border-b text-1xl ransition group-hover:text-black bg-gradient-to-tr from-blue-1000 to-pink-1000 md:mb-2 lg:mb-0 hover:text-blue-1000 ">
-                                            Read it
-                                            <svg className="w-10 h-10 ml-2 -m-32" xmlns="http://www.w3.org/2000/svg"
-                                                 viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                                <path
-                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div className=" lg:w-1/3 sm:w-1/2">
-                            <div className="flex h-full">
-                                <img alt="gallery" className="object-cover object-center w-full h-full "
-                                     src="https://cdn.vox-cdn.com/thumbor/WF8o9kZbcn0YYoc813ahCDU54_Q=/0x0:3500x2412/920x613/filters:focal(1470x926:2030x1486):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67818577/Lime_Gen4.0.jpg"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <CardRow>
+                <CategoryAndDescriptionCard headline="A second row" bgColor="pink-600" bgGradientFrom="red-light" bgGradientTo="skyblue"/>
+                <CategoryAndDescriptionCard headline="Row Row Row" bgColor="skyblue" bgGradientFrom="green" bgGradientTo="cream"/>
+                <CategoryAndDescriptionCard headline="Looks like we're on a row here" bgColor="green"/>
+            </CardRow>
 
             <div className="container px-5 mx-auto text-white bg-black lg:py-10 lg:px-20 shadow-green body-font">
                 <a href="#">

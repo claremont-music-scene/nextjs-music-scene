@@ -12,7 +12,7 @@ export default function SignupBanner() {
                 <div className="flex flex-col w-full p-8 lg:w-2/6 md:w-1/2 md:ml-auto lg:mt-10 md:mt-0">
                     <div className="relative mb-4">
                         <input type="email" id="email" name="email" placeholder="email@example.com"
-                               className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 outline-none focus:border-black"/>
+                               className="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-cream border border-gray-300 outline-none focus:border-black"/>
                     </div>
                     <button
                         className="px-8 py-2 font-bold text-white transition duration-500 ease-in-out transform border-0 bg-pink-1000 hover:text-black focus:outline-none hover:bg-green ">Subscribe

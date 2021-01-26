@@ -1,7 +1,7 @@
 export default function CardFullWidthImageRight() {
     return (
         <div className="container w-full py-10 mx-auto ">
-            <div className="bg-white shadow-green">
+            <div className="bg-cream shadow-green">
                 <div className="flex flex-wrap p-4 ">
                     <div className="lg:w-1/2 md:w-1/2 lg:-mt-12 ">
                         <div className="flex h-full">

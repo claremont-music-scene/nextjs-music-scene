@@ -7,15 +7,16 @@ import NewsCardGrid from "../components/cards/news-card-grid";
 import HeadlineCard from "../components/cards/headline";
 import SectionPageLayout from "../components/layouts/section-page";
 import UpcomingEvents from "../components/events/upcoming-events";
+import SignupBanner from "../components/subscription-banner";
 
 export async function getStaticProps() {
     const bulletins = await apiGetter('/bulletin_board/items/')
     const events = await apiGetter('/events/occurrence/')
     const news = await apiGetter('/news/')
-    return {props: {bulletins, events}}
+    return {props: {bulletins, events, news}}
 }
 
-export default function Home({bulletins, events}) {
+export default function Home({bulletins, events, news}) {
     return (
         <>
             <Head>
@@ -28,13 +29,9 @@ export default function Home({bulletins, events}) {
 
                 <UpcomingEvents events={events}/>
 
-                <NewsCardGrid>
-                    <HeadlineCard/>
-                    <HeadlineCard/>
-                    <HeadlineCard/>
-                    <HeadlineCard/>
-                </NewsCardGrid>
+                <NewsCardGrid news={news}/>
 
+                <SignupBanner/>
             </SectionPageLayout>
         </>
     )

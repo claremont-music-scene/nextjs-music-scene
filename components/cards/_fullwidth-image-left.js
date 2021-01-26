@@ -1,7 +1,7 @@
 export default function CardFullWidthImageLeft() {
     return (
         <div className="container w-full pt-20 pb-10 mx-auto ">
-            <div className="bg-white shadow-green">
+            <div className="bg-cream shadow-green">
                 <div className="flex flex-wrap p-4 ">
                     <div className=" lg:w-1/2 sm:w-1/2">
                         <div className="flex h-full">

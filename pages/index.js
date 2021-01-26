@@ -4,7 +4,6 @@ import NewsletterSignup from "../components/newsletter-signup";
 import {apiGetter} from "../util/server";
 import BulletinList from "../components/bulletins/bulletin-list";
 import NewsCardGrid from "../components/cards/news-card-grid";
-import HeadlineCard from "../components/cards/headline";
 import SectionPageLayout from "../components/layouts/section-page";
 import UpcomingEvents from "../components/events/upcoming-events";
 import SignupBanner from "../components/subscription-banner";
@@ -26,11 +25,8 @@ export default function Home({bulletins, events, news}) {
 
             <SectionPageLayout>
                 <BulletinList bulletins={bulletins} length={3}/>
-
                 <UpcomingEvents events={events}/>
-
                 <NewsCardGrid news={news}/>
-
                 <SignupBanner/>
             </SectionPageLayout>
         </>

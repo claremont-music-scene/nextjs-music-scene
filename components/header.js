@@ -1,3 +1,5 @@
+import UserState from "./user-state";
+
 export default function Header() {
     return (
         <section className="text-white bg-midnight">
@@ -24,10 +26,11 @@ export default function Header() {
                             </svg>
                         </a>
                     </span>
+                <UserState/>
             </div>
             <div className="container flex flex-col items-center px-5 pb-4 mx-auto lg:px-10 md:flex-row">
                 <div className="flex flex-col items-center text-center lg:flex-grow md:items-start md:text-left">
-                    <h1 className="mb-8 text-2xl font-black leading-none tracking-tighter text-center text-orange lg:text-left lg:text-8xl text-shadow-3d title-font">
+                    <h1 className="mb-8 text-2xl font-black f leading-none tracking-tighter text-center text-orange lg:text-left lg:text-8xl text-shadow-3d title-font">
                         Claremont <span className="text-red text-13xl">Music</span> Scene
                     </h1>
                 </div>

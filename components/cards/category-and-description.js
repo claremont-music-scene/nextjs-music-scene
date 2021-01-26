@@ -1,7 +1,21 @@
-export default function CategoryAndDescriptionCard({headline, bgColor='yellow', bgGradientFrom = 'yellow', bgGradientTo = 'orange'}) {
+import {citrusDreams} from './themes'
 
-    const cardStyle = `w-full px-8 py-10 bg-${bgColor}`
-    const headlineStyle = `text-5xl font-teal leading-none tracking-tighter text-transparent bg-gradient-to-tr from-${bgGradientFrom} to-${bgGradientTo} bg-clip-text`
+export default function CategoryAndDescriptionCard({
+   headline,
+   description,
+   category,
+   author,
+   theme = {}
+}) {
+    for (let prop in citrusDreams) {
+        if (!theme.hasOwnProperty(prop)) {
+            theme[prop] = citrusDreams[prop];
+        }
+    }
+    const cardStyle = `w-full px-8 py-10 bg-${theme.bgColor}`
+    const headlineStyle = `text-xl font-teal leading-none tracking-tighter text-transparent bg-gradient-to-tr from-${theme.bgGradientFrom} to-${theme.bgGradientTo} bg-clip-text`
+    const headlineBgStyle = `p-4 mb-1 bg-${theme.headlineBgColor}`
+    const descriptionStyle = `my-4 font-medium leading-none tracking-tighter text-${theme.descriptionColor}`
     return (
         <div className="lg:w-1/3 md:w-1/2 lg:-mt-12">
 
@@ -9,20 +23,19 @@ export default function CategoryAndDescriptionCard({headline, bgColor='yellow', 
 
                 <div className={cardStyle}>
                     <a href="#">
-                        <div className="p-4 mb-1 bg-black">
+                        <div className={headlineBgStyle}>
                             <h1 className={headlineStyle}>
                                 {headline}
                             </h1>
                         </div>
                         <h1 className="p-4 mb-3 text-lg font-medium text-white uppercase bg-black">
-                            TECH
+                            {category}
                             <small className="text-xs text-red ">
                                 <span className="text-gray-500">BY</span>
-                                Ginger Chris
+                                {author}
                             </small>
                         </h1>
-                        <p className="my-4 font-medium leading-none tracking-tighter">Because of the large
-                            footprint, it may seem flat, but actually ranges up to 5 stories tall.</p>
+                        <p className={descriptionStyle}>{description}</p>
                     </a>
 
 

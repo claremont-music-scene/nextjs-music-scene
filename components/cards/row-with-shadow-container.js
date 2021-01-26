@@ -1,4 +1,3 @@
-import CategoryAndDescriptionCard from "./category-and-description";
 
 export default function CardRowWithShadowContainer({children}) {
     return (

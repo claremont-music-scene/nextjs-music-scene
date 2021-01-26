@@ -1,10 +1,6 @@
 import Head from 'next/head'
-import HeaderSocialLinks from "../components/header-social-links";
-import Footer from "../components/footer";
-import Nav from "../components/nav";
 import VolunteerTeaser from "../components/community/volunteer-teaser";
 import NewsletterSignup from "../components/newsletter-signup";
-import TwoColumnSection from "../components/layouts/two-column-section";
 import {apiGetter} from "../util/server";
 import BulletinList from "../components/bulletins/bulletin-list";
 import EventGroups from "../components/events/event-group";
@@ -18,6 +14,7 @@ import {rollerDerby, reallySalmon} from "../components/cards/themes"
 export async function getStaticProps() {
     const bulletins = await apiGetter('/bulletin_board/items/')
     const events = await apiGetter('/events/occurrence/')
+    const news = await apiGetter('/news/')
     return {props: {bulletins, events}}
 }
 
@@ -37,6 +34,7 @@ export default function Home({bulletins, events}) {
                     <CategoryAndDescriptionCard headline="Then Another" theme={{bgColor: 'teal'}}/>
                     <CategoryAndDescriptionCard headline="Looks like we're on a roll here" theme={{bgColor: "cream"}}/>
                 </CardRowWithShadowContainer>
+
                 <CardRowWithShadowContainer>
                     <CategoryAndDescriptionCard headline="A second row" bgColor="pink-600" bgGradientFrom="red-light"
                                                 bgGradientTo="skyblue"/>
@@ -51,6 +49,7 @@ export default function Home({bulletins, events}) {
                     <HeadlineCard/>
                     <HeadlineCard/>
                 </NewsCardGrid>
+
             </SectionPageLayout>
         </>
     )

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import VenueList from "../../components/venues/venue-list";
-import SingleColumnLayout from "../../components/layouts/single-column";
 import {apiGetter} from "../../util/server";
+import SectionPageLayout from "../../components/layouts/section-page";
 
 
 export async function getStaticProps() {
@@ -11,16 +11,17 @@ export async function getStaticProps() {
 
 export default function Events({venues}) {
     return (
-        <SingleColumnLayout>
-            <div className="container">Due
+        <SectionPageLayout>
+
+            <div className="p-8 bg-red-light">Due
                 to the Covid-19 Pandemic, events have been cancelled or postponed. Information on these pages
                 may be inaccurate
                 or out-of-date due to the circumstances. We will work to update and adapt the information
                 accordingly as time progresses.
             </div>
 
-            <section>
-                <div className="posts">
+            <section className='text-cream'>
+                <div>
                     <article><Link href="/events/series/" className="image"><a><img
                         sizes="(min-width: 30em) 43vw, 95vw" srcSet=", /events/technopagan_hu75e5cbecd5bcf498c2af6806ed763681_3245165_210x0_resize_q75_box.jpg 210w
 , /events/technopagan_hu75e5cbecd5bcf498c2af6806ed763681_3245165_256x0_resize_q75_box.jpg 256w
@@ -46,6 +47,8 @@ export default function Events({venues}) {
                     </article>
                 </div>
             </section>
+
+
             <section><h3>Event Planning</h3><p>Do you have an idea for an event or want to try something out?
                 Take advantage of our network
                 to help with
@@ -53,11 +56,15 @@ export default function Events({venues}) {
                 <footer><Link href="/events/planning/" className="button icon solid fa-info-circle"><a>Find out
                     more</a></Link></footer>
             </section>
+
+
             <section>
                 <h3>Venues Directory</h3>
                 <VenueList venues={venues}/>
             </section>
-        </SingleColumnLayout>
+
+
+        </SectionPageLayout>
 
     )
 }

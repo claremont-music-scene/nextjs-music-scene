@@ -1,8 +1,8 @@
-import SingleColumnLayout from "../../../components/layouts/single-column";
 import EventList from '../../../components/events/event-list';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import {apiGetter} from "../../../util/server";
+import SectionPageLayout from "../../../components/layouts/section-page";
 
 dayjs.extend(isSameOrAfter);
 
@@ -18,8 +18,8 @@ export default function EventDisplay({ events }) {
     // if (!data) return <div>loading...</div>
 
     return (
-        <SingleColumnLayout>
+        <SectionPageLayout>
             <EventList events={events} />
-        </SingleColumnLayout>
+        </SectionPageLayout>
     );
 }

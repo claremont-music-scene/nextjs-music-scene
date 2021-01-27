@@ -1,18 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import SingleColumnLayout from "../../components/layouts/single-column"
+import SectionPageLayout from "../../components/layouts/section-page";
 
 export default function Community() {
     return (
-    <SingleColumnLayout>
+    <SectionPageLayout>
         <Head>
             <title>Claremont Music Scene Community</title>
         </Head>
 
-        <section>
+        <section className='text-cream'>
             <Link href={'/community/events'}><a>Events</a></Link>&nbsp;|&nbsp;
             <Link href={'/community/bulletins'}><a>Bulletin Board</a></Link>
-
         </section>
 
         <section>
@@ -50,6 +49,6 @@ export default function Community() {
                 </div>
             </section>
         </section>
-    </SingleColumnLayout>
+    </SectionPageLayout>
     )
 }

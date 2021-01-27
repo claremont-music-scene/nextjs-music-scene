@@ -2,12 +2,7 @@ import MenuAction from "./action";
 
 export default function Menu() {
     return (
-
-
-
     <nav className="flex items-center justify-between flex-wrap bg-black border-t-4 border-b border-orange w-full">
-
-
         <div className="block lg:hidden">
             <button id="nav-toggle"
                     className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-white hover:border-white">
@@ -17,7 +12,6 @@ export default function Menu() {
                 </svg>
             </button>
         </div>
-
         <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto lg:block pt-6 lg:pt-0 hidden"
              id="nav-content">
             <ul className="list-reset lg:flex flex-1 items-center justify-center">

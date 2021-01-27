@@ -1,6 +1,6 @@
 export default function SignupBanner() {
     return (
-        <section className="">
+        <section className="bg-orange-light">
             <div className="container flex flex-wrap items-center px-5 mx-auto ">
                 <div className="flex flex-col w-full p-8 mt-10 bg-black lg:w-4/6 md:w-1/2 md:ml-auto md:mt-0">
                     <h1 className="text-5xl font-black leading-none tracking-tighter text-transparent bg-gradient-to-tr from-blue to-pink bg-clip-text text-shadow-3d lg:text-8xl">Become

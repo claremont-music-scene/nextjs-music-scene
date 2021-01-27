@@ -7,3 +7,9 @@
 }
 
 @tailwind utilities;
+
+@layer base {
+    body {
+        background-color: #0a051a;
+    }
+}

@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export default function HeadlineCard({headline}) {
+export default function HeadlineCard({headline, path}) {
     return (
         <div className="w-full border-2 border-white lg:w-1/2">
-            <Link href="/detail-page"><a>
+            <Link href={path}><a>
                 <div className="flex h-full">
                     <div
                         className="w-full px-8 py-10 transition duration-500 ease-in-out bg-black hover:bg-cream group">

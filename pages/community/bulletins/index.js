@@ -17,7 +17,7 @@ export default function Bulletins({ posts }) {
                     <a>New bulletin</a>
                 </Link>
             </div>
-            <h1 className='text-green text-3xl '>Bulletins</h1>
+            <h1 className='text-green text-3xl w-28 bg-cream transform -rotate-12'>Bulletins</h1>
             <BulletinList bulletins={posts}/>
         </SectionPageLayout>
     );

@@ -10,7 +10,9 @@ export default function Event({ e }) {
     const endDisplay = e.end ? dayjs(e.end).format('ha') : ''
 
 
-    return (
+    return (<>
+
+
         <div>
             <h1>{e.title}</h1>
             <h2>When</h2>
@@ -52,5 +54,14 @@ export default function Event({ e }) {
                 </Link>
             </div>
         </div>
-    );
+
+    <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto flex flex-wrap">
+            <h2 className="sm:text-3xl text-2xl text-pink font-medium title-font mb-2 md:w-2/5">{e.title}</h2>
+            <div className="md:w-3/5 md:pl-6">
+                <p className="leading-relaxed text-base text-cream">{e.description}</p>
+            </div>
+        </div>
+    </section>
+    </>);
 }

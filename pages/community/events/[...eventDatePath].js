@@ -1,7 +1,7 @@
-import SingleColumnLayout from '../../../components/layouts/single-column';
 import Event from '../../../components/events/event';
 import {apiGetter} from "../../../util/server";
 import {getEventOccurrenceApiPath, getEventPathParts} from "../../../util/events";
+import SectionPageLayout from "../../../components/layouts/section-page";
 
 
 export async function getStaticProps({params}) {
@@ -22,9 +22,9 @@ export async function getStaticPaths() {
 }
 
 const EventPage = ({occurrence}) => (
-    <SingleColumnLayout>
+    <SectionPageLayout>
         <Event e={occurrence}/>
-    </SingleColumnLayout>
+    </SectionPageLayout>
 );
 
 export default EventPage;

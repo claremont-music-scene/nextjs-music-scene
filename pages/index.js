@@ -15,6 +15,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({bulletins, events, news}) {
+    const showBulletinSummary = false
     return (
         <>
             <Head>
@@ -23,8 +24,9 @@ export default function Home({bulletins, events, news}) {
             </Head>
 
             <SectionPageLayout>
-                <BulletinList bulletins={bulletins} length={3}/>
+                {showBulletinSummary && <BulletinList bulletins={bulletins} length={3}/>}
                 <UpcomingEvents events={events}/>
+                <h2>Latest News</h2>
                 <NewsCardGrid news={news}/>
             </SectionPageLayout>
         </>

@@ -1,6 +1,7 @@
 import UserState from "./user-state";
 
 export default function Header() {
+    const showUserState = false
     return (
         <section className="text-white bg-midnight">
             <div className="container flex flex-col flex-wrap px-5 pt-4 mx-auto lg:px-16 sm:flex-row">
@@ -26,7 +27,7 @@ export default function Header() {
                             </svg>
                         </a>
                     </span>
-                <UserState/>
+                {showUserState && <UserState/>}
             </div>
             <div className="container flex flex-col items-center px-5 pb-4 mx-auto lg:px-10 md:flex-row">
                 <div className="flex flex-col items-center text-center lg:flex-grow md:items-start md:text-left">

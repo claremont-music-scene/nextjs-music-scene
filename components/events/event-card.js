@@ -6,7 +6,7 @@ export default function EventCard({event}) {
 
     //TODO
     event.location = "TODO Location"
-    const eventUrl = `/community/events/${getSiteEventPath(event)}`
+    const eventUrl = `/events/${getSiteEventPath(event)}`
     return (
 
         <div key={event.event_id} className="p-8 flex flex-wrap md:flex-nowrap bg-cream">

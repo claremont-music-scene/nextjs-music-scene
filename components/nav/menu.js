@@ -1,6 +1,8 @@
 import MenuAction from "./action";
 
 export default function Menu() {
+    const showCommunity = false
+    const showAbout = false
     return (
     <nav className="flex items-center justify-between flex-wrap bg-black border-t-4 border-b border-orange w-full">
         <div className="block lg:hidden">
@@ -18,8 +20,8 @@ export default function Menu() {
                 <MenuAction href="/" title="Welcome"/>
                 <MenuAction href="/news" title="News" hoverBg='blue'/>
                 <MenuAction href="/events" title="Events" hoverBg='red'/>
-                <MenuAction href="/community" title="Community" hoverBg='green'/>
-                <MenuAction href="/about" title="About" hoverBg='pink'/>
+                {showCommunity && <MenuAction href="/community" title="Community" hoverBg='green'/>}
+                {showAbout && <MenuAction href="/about" title="About" hoverBg='pink'/>}
             </ul>
         </div>
     </nav>)

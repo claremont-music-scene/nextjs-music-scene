@@ -1,7 +1,8 @@
-import Event from '../../../components/events/event';
-import {apiGetter} from "../../../util/server";
-import {getEventOccurrenceApiPath, getEventPathParts} from "../../../util/events";
-import SectionPageLayout from "../../../components/layouts/section-page";
+import Event from '../../components/events/event';
+import {apiGetter} from "../../util/server";
+import {getEventOccurrenceApiPath, getEventPathParts} from "../../util/events";
+import SectionPageLayout from "../../components/layouts/section-page";
+import ContainerWithShadow from "../../components/layouts/container-with-shadow";
 
 
 export async function getStaticProps({params}) {
@@ -23,7 +24,9 @@ export async function getStaticPaths() {
 
 const EventPage = ({occurrence}) => (
     <SectionPageLayout>
-        <Event e={occurrence}/>
+        <ContainerWithShadow>
+            <Event e={occurrence}/>
+        </ContainerWithShadow>
     </SectionPageLayout>
 );
 

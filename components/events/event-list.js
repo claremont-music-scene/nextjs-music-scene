@@ -44,9 +44,6 @@ export default function EventList({ events }) {
      */
 
     return (
-        <div>
-            <h1>Current Events</h1>
             <EventGroup events={events} heading={'Some Events'}/>
-        </div>
     );
 }

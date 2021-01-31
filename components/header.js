@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import UserState from "./user-state";
 
 export default function Header() {
@@ -8,7 +9,8 @@ export default function Header() {
                     <span
                         className="inline-flex justify-center px-4 py-2 mt-2 bg-black sm:ml-auto sm:mt-0 sm:justify-start shadow-green">
                         <a className="text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" className={"icon icon-tabler icon-tabler-rss"} width="20"
+                            <svg xmlns="http://www.w3.org/2000/svg" className={"icon icon-tabler icon-tabler-rss"}
+                                 width="20"
                                  height="20" viewBox="0 0 24 24" strokeWidth={"1.5"} stroke="currentColor" fill="none"
                                  strokeLinecap={"round"} strokeLinejoin={"round"}>
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -18,7 +20,8 @@ export default function Header() {
                             </svg>
                         </a>
                         <a className="ml-3 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-twitter"
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 className="icon icon-tabler icon-tabler-brand-twitter"
                                  width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
                                  fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -31,9 +34,11 @@ export default function Header() {
             </div>
             <div className="container flex flex-col items-center px-5 pb-4 mx-auto lg:px-10 md:flex-row">
                 <div className="flex flex-col items-center text-center lg:flex-grow md:items-start md:text-left">
-                    <h1 className="mb-8 text-2xl font-black f leading-none tracking-tighter text-center text-orange lg:text-left lg:text-8xl text-shadow-3d title-font">
-                        Claremont <span className="text-red text-13xl">Music</span> Scene
-                    </h1>
+                    <Link href='/'><a>
+                        <h1 className="mb-8 text-2xl font-black f leading-none tracking-tighter text-center text-orange lg:text-left lg:text-8xl text-shadow-3d title-font">
+                            Claremont <span className="text-red text-13xl">Music</span> Scene
+                        </h1>
+                    </a></Link>
                 </div>
             </div>
         </section>

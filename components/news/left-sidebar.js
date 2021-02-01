@@ -7,7 +7,7 @@ export default function StoryLeftSidebar({items}) {
         {items.map(i => {
             //TODO slug
             const path = `/news/${i.id}`
-            return (<div className="px-5">
+            return (<div key={i.id} className="px-5">
                 <div className="flex h-full">
                     <div className="w-full py-4 bg-black">
                         <div className="mb-1 bg-black">
@@ -23,9 +23,6 @@ export default function StoryLeftSidebar({items}) {
                                 Brian
                             </small>
                         </h1>
-                        <p className="my-4 font-medium leading-none tracking-tighter text-white">
-                            TODO teaser text</p>
-
                     </div>
                 </div>
             </div>)

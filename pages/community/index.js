@@ -3,11 +3,13 @@ import Link from 'next/link'
 import SectionPageLayout from "../../components/layouts/section-page";
 
 export default function Community() {
-    return (
-    <SectionPageLayout>
+    return (<>
         <Head>
-            <title>Claremont Music Scene Community</title>
+            <title>Community Information and Services | Claremont Music Scene Community</title>
+            <link rel="icon" href="/favicon.ico"/>
         </Head>
+
+    <SectionPageLayout>
 
         <section className='text-cream'>
             <Link href={'/community/events'}><a>Events</a></Link>&nbsp;|&nbsp;
@@ -50,5 +52,5 @@ export default function Community() {
             </section>
         </section>
     </SectionPageLayout>
-    )
+    </>)
 }

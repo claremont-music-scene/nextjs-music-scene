@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import VolunteerTeaser from "../components/community/volunteer-teaser";
 import NewsletterSignup from "../components/newsletter-signup";
 import {apiGetter} from "../util/server";
@@ -17,18 +16,11 @@ export async function getStaticProps() {
 export default function Home({bulletins, events, news}) {
     const showBulletinSummary = false
     return (
-        <>
-            <Head>
-                <title>Claremont Music Scene</title>
-                <link rel="icon" href="/favicon.ico"/>
-            </Head>
-
-            <SectionPageLayout>
-                {showBulletinSummary && <BulletinList bulletins={bulletins} length={3}/>}
-                <UpcomingEvents events={events}/>
-                <h2>Latest News</h2>
-                <NewsCardGrid news={news}/>
-            </SectionPageLayout>
-        </>
+        <SectionPageLayout>
+            {showBulletinSummary && <BulletinList bulletins={bulletins} length={3}/>}
+            <UpcomingEvents events={events}/>
+            <h2>Latest News</h2>
+            <NewsCardGrid news={news}/>
+        </SectionPageLayout>
     )
 }

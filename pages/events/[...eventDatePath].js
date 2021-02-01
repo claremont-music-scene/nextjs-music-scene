@@ -11,11 +11,11 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-    const evs = await apiGetter('/events/occurrence/')
+    const events = await apiGetter('/events/occurrence/')
     return {
-        paths: evs.map(ev => ({
+        paths: events.map(event => ({
             params: {
-                eventDatePath: getEventPathParts(ev)
+                eventDatePath: getEventPathParts(event)
             }
         })),
         fallback: false
@@ -23,11 +23,11 @@ export async function getStaticPaths() {
 }
 
 const EventPage = ({occurrence}) => (
-    <SectionPageLayout>
+    <SectionPageLayout title={`${occurrence.title} | Events`}>
         <ContainerWithShadow>
-            <Event e={occurrence}/>
+            <Event event={occurrence}/>
         </ContainerWithShadow>
     </SectionPageLayout>
-);
+)
 
 export default EventPage;

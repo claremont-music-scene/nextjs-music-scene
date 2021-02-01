@@ -1,6 +1,7 @@
 import {apiGetter} from "../../util/server";
 import DetailPage from "../../components/layouts/detail-page";
 import NewsContentSection from "../../components/news/detail";
+import Head from "next/head";
 
 export async function getStaticPaths() {
     const allPosts = await apiGetter('/news')
@@ -21,9 +22,9 @@ export async function getStaticProps({params}) {
 
 
 export default function NewsPost({post, related}) {
-    return (
-        <DetailPage headline={post.title}>
+    return (<>
+        <DetailPage title={`${post.title} | News`} headline={post.title}>
             <NewsContentSection contentItem={post} sidebarItems={related}/>
         </DetailPage>
-    )
+    </>)
 }

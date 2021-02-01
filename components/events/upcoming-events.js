@@ -7,7 +7,7 @@ export default function UpcomingEvents({events}) {
     return (
         <SectionWithHeader header="Upcoming Events">
             <div className="divide-y-2 divide-red">
-                {events.map(e => <EventCard event={e}/>)}
+                {events.map(event => <EventCard event={event} key={event.event_id}/>)}
             </div>
         </SectionWithHeader>
     )

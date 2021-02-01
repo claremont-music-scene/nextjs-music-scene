@@ -12,7 +12,7 @@ export async function getStaticProps() {
 
 export default function News({news}) {
     return (
-        <SectionPageLayout>
+        <SectionPageLayout title="News">
             <CardFullWidthImageLeft/>
             <NewsCardGrid news={news}/>
         </SectionPageLayout>

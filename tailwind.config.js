@@ -46,5 +46,17 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({addUtilities}) {
+
+      const extendUnderline = {
+
+        'a': {
+          textDecoration: 'underline'
+      },
+    }
+
+      addUtilities(extendUnderline)
+    }
+  ]
 }

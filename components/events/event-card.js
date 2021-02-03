@@ -13,16 +13,16 @@ export default function EventCard({event}) {
 
 
     return (
-        <div key={event.event_id} className="p-8 flex flex-wrap md:flex-nowrap bg-cream">
+        <div key={event.event_id} className="px-2 py-8 flex flex-nowrap bg-cream">
 
-            <div className="md:w-32 md:mb-0 mb-6 flex flex-col flex-shrink-0 bg-orange-light text-center justify-center">
-                    <span className="font-semibold title-font text-black uppercase">{dayjs(event.start).format('ddd')}</span>
+            <div className="md:w-32 md:mb-0 mb-6 px-2 flex flex-col flex-shrink text-center justify-center">
+                <span className="font-semibold title-font text-black uppercase">{dayjs(event.start).format('ddd')}</span>
                 <span className="font-semibold title-font text-black uppercase">{dayjs(event.start).format('MMM')}</span>
                 <span className="font-semibold title-font text-black text-3xl">{dayjs(event.start).format('DD')}</span>
             </div>
 
             <div className="md:flex-grow px-4">
-                <h2 className="text-3xl font-medium title-font mb-2">{event.title}</h2>
+                <h2 className="text-lg md:text-3xl font-medium title-font mb-2">{event.title}</h2>
                 {event.location && <p className="text-gray">{event.location}</p>}
                 {eventUrl &&
                     <Link href={eventUrl}><a className="inline-flex items-center mt-4">Details

@@ -10,7 +10,7 @@ export default function Menu() {
     const showCommunity = false
     const showAbout = false
     const showNews = false
-    const menuItemListStyle = `w-full flex-grow md:flex md:items-center md:w-auto md:block pt-6 md:pt-0${hamburgerOpen ? "": " hidden"}`
+    const menuItemListStyle = `w-full flex-grow md:flex md:items-center md:w-auto md:block md:pt-0${hamburgerOpen ? "": " hidden"}`
 
     return (
     <nav className="flex items-center justify-between flex-wrap bg-black border-t-4 border-b border-orange w-full">

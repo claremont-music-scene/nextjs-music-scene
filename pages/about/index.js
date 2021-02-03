@@ -2,10 +2,11 @@ import SingleColumnLayout from "../../components/layouts/single-column";
 import Head from "next/head";
 import OverviewBox from "../../components/overview-box";
 import LogoBanner from "../../components/logo-banner";
+import SectionPageLayout from "../../components/layouts/section-page";
 
 export default function About() {
     return (
-        <SingleColumnLayout>
+        <SectionPageLayout>
             <Head><title>About Claremont Music Scene</title></Head>
 
             <LogoBanner/>
@@ -33,6 +34,6 @@ export default function About() {
                 choir of the commons.
             </div>
 
-        </SingleColumnLayout>
+        </SectionPageLayout>
     )
 }

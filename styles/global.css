@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+
+@font-face {
+    font-family: 'Trend Sans One';
+    src: local('Trend Sans One'), url(../public/webfonts/3938FF_0_0.ttf) format('ttf');
+}
+
+@tailwind utilities;
+
+@layer base {
+    body {
+        background-color: #0a051a;
+    }
+}

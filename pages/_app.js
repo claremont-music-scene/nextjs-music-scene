@@ -1,10 +1,14 @@
 import { Provider } from 'next-auth/client'
-import '../styles/main.css';
-import '../styles/grid.css';
-import '../styles/form.css';
-import '../styles/events.css';
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.core.css';
+//import '../styles/main.css';
+//import '../styles/grid.css';
+//import '../styles/form.css';
+//import '../styles/events.css';
+import '../styles/global.css'
+
+//import 'react-quill/dist/quill.snow.css';
+//import 'react-quill/dist/quill.core.css';
+
+//import "tailwindcss/tailwind.css"
 
 
 // Use the <Provider> to improve performance and allow components that call

@@ -9,6 +9,7 @@ export default function Menu() {
     }
     const showCommunity = false
     const showAbout = false
+    const showNews = false
     const menuItemListStyle = `w-full flex-grow md:flex md:items-center md:w-auto md:block pt-6 md:pt-0${hamburgerOpen ? "": " hidden"}`
 
     return (
@@ -26,7 +27,7 @@ export default function Menu() {
         <div className={menuItemListStyle}>
             <ul className="list-reset md:flex flex-1 items-center justify-center">
                 <MenuAction href="/" title="Welcome"/>
-                <MenuAction href="/news" title="News" hoverBg='blue'/>
+                {showNews && <MenuAction href="/news" title="News" hoverBg='blue'/>}
                 <MenuAction href="/events" title="Events" hoverBg='red'/>
                 {showCommunity && <MenuAction href="/community" title="Community" hoverBg='green'/>}
                 {showAbout && <MenuAction href="/about" title="About" hoverBg='pink'/>}
